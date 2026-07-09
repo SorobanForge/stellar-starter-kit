@@ -1,4 +1,4 @@
-name: "PR Commit Check"
+name: 'PR Commit Check'
 
 on:
   pull_request_target:

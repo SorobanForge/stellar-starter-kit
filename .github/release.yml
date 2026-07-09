@@ -5,22 +5,22 @@ changelog:
     authors:
       - octocat
   categories:
-    - title: "🚀 New Features"
+    - title: '🚀 New Features'
       labels:
         - enhancement
         - feat
-    - title: "🐛 Bug Fixes"
+    - title: '🐛 Bug Fixes'
       labels:
         - bug
         - fix
-    - title: "📖 Documentation Changes"
+    - title: '📖 Documentation Changes'
       labels:
         - documentation
         - docs
-    - title: "⚙️ Dependency Updates"
+    - title: '⚙️ Dependency Updates'
       labels:
         - dependencies
-    - title: "🧹 Chores & Maintenance"
+    - title: '🧹 Chores & Maintenance'
       labels:
         - chore
         - refactor

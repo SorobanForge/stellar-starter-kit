@@ -1,43 +1,141 @@
-- name: "bug"
-  color: "d73a4a"
-  description: "Something isn't working"
+# GitHub Issue & Pull Request Labels
 
-- name: "duplicate"
-  color: "cfd3d7"
-  description: "This issue or pull request already exists"
+- name: 'type: bug'
+  color: 'd73a4a'
+  description: "Something isn't working as expected"
 
-- name: "enhancement"
-  color: "a2eeef"
-  description: "New feature or request"
+- name: 'type: feature'
+  color: 'a2eeef'
+  description: 'New features, capabilities, or major enhancements'
 
-- name: "good first issue"
-  color: "7057ff"
-  description: "Good for newcomers"
+- name: 'type: documentation'
+  color: '0075ca'
+  description: 'Improvements or additions to documentation or guides'
 
-- name: "help wanted"
-  color: "008672"
-  description: "Extra attention is needed"
+- name: 'type: chore'
+  color: 'cfd3d7'
+  description: 'Repository maintenance, dependencies, lints, or minor tweaks'
 
-- name: "invalid"
-  color: "e4e669"
-  description: "This doesn't seem right"
+- name: 'type: performance'
+  color: '84b6eb'
+  description: 'Code changes that improve CPU, memory, or bundle size performance'
 
-- name: "question"
-  color: "d876e3"
-  description: "Further information is requested"
+- name: 'type: security'
+  color: 'b60205'
+  description: 'Security issues, vulnerability updates, or audits'
 
-- name: "wontfix"
-  color: "ffffff"
-  description: "This will not be worked on"
+- name: 'type: refactor'
+  color: 'd4c5f9'
+  description: 'Code structure refactorings without behavior modifications'
 
-- name: "dependencies"
-  color: "0366d6"
-  description: "Dependency updates"
+- name: 'type: test'
+  color: 'e99695'
+  description: 'Adding missing tests or improving existing test suites'
 
-- name: "documentation"
-  color: "0075ca"
-  description: "Improvements or additions to documentation"
+- name: 'area: cli'
+  color: 'bfdadc'
+  description: 'Code and scripts related to packages/cli'
 
-- name: "triage"
-  color: "e99695"
-  description: "Needs categorization or verification"
+- name: 'area: config'
+  color: 'c5def5'
+  description: 'Code and settings related to packages/config'
+
+- name: 'area: contracts'
+  color: 'fef2c0'
+  description: 'Code and tests related to packages/contracts (Soroban)'
+
+- name: 'area: core'
+  color: '0052cc'
+  description: 'Code and connections related to packages/core'
+
+- name: 'area: hooks'
+  color: 'bfd4f2'
+  description: 'React hooks and states related to packages/hooks'
+
+- name: 'area: sdk'
+  color: '1d76db'
+  description: 'Developer client modules related to packages/sdk'
+
+- name: 'area: testing'
+  color: '006b75'
+  description: 'Mock environments and node simulators related to packages/testing'
+
+- name: 'area: ui'
+  color: 'fef2c0'
+  description: 'Tailwind UI component files related to packages/ui'
+
+- name: 'area: utils'
+  color: '5319e7'
+  description: 'Math, formatting, and conversion helpers related to packages/utils'
+
+- name: 'area: wallets'
+  color: 'bfd4f2'
+  description: 'Freighter/Albedo wallet adapter adapters related to packages/wallets'
+
+- name: 'area: web'
+  color: 'd4c5f9'
+  description: 'Views and API routes related to apps/web (Next.js)'
+
+- name: 'priority: critical (p0)'
+  color: 'b60205'
+  description: 'Blocks releases, production deployment, or breaks core APIs'
+
+- name: 'priority: high (p1)'
+  color: 'd93f0b'
+  description: 'Important feature request or high-visibility bug fix'
+
+- name: 'priority: medium (p2)'
+  color: 'fbca04'
+  description: 'Standard issues, enhancements, or bug fixes'
+
+- name: 'priority: low (p3)'
+  color: '0e8a16'
+  description: 'Minor bug fixes, nice-to-have features, or chores'
+
+- name: 'status: blocked'
+  color: 'e11d21'
+  description: 'Work is blocked by an external dependency or another issue'
+
+- name: 'status: in-progress'
+  color: 'fe1351'
+  description: 'Work is active or currently being drafted'
+
+- name: 'status: triaged'
+  color: 'c2e0c6'
+  description: 'Acknowledged, verified, and prioritized by maintainers'
+
+- name: 'status: review-needed'
+  color: 'fbca04'
+  description: 'Implementation complete; awaiting review approval'
+
+- name: 'status: help-wanted'
+  color: '008672'
+  description: 'Extra attention or community help is requested'
+
+- name: 'status: good-first-issue'
+  color: '7057ff'
+  description: 'Good starting point for new contributors'
+
+- name: 'difficulty: easy'
+  color: 'c2e0c6'
+  description: 'Simple task requiring minimal knowledge of the codebase'
+
+- name: 'difficulty: medium'
+  color: 'fef2c0'
+  description: 'Standard developer task requiring basic codebase context'
+
+- name: 'difficulty: hard'
+  color: 'f9d0c4'
+  description: 'Complex architecture alterations requiring deep understanding'
+
+- name: 'ecosystem: soroban'
+  color: 'e99695'
+  description: 'Soroban WebAssembly smart contract interactions'
+
+- name: 'ecosystem: horizon'
+  color: 'c5def5'
+  description: 'Horizon server endpoints and REST transactions API'
+
+- name: 'ecosystem: quickstart'
+  color: '0e8a16'
+  description: 'Stellar quickstart docker container configurations'
