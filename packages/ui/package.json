@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "tailwind-merge": "^2.3.0",
+    "tailwind-merge": "^3.6.0",
     "lucide-react": "^0.395.0",
     "framer-motion": "^11.2.10"
   },
