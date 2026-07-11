@@ -17,6 +17,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^19.2.2
         version: 19.8.1
+      '@types/react':
+        specifier: ^19.0.0-rc.0
+        version: 19.2.17
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.15.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1)(typescript@5.9.3)
@@ -45,11 +48,14 @@ importers:
         specifier: ^15.2.7
         version: 15.5.2
       prettier:
-        specifier: ^3.3.2
-        version: 3.9.4
+        specifier: 3.3.3
+        version: 3.3.3
       prettier-plugin-tailwindcss:
         specifier: ^0.6.5
-        version: 0.6.14(prettier@3.9.4)
+        version: 0.6.14(prettier@3.3.3)
+      react:
+        specifier: 19.0.0-rc.0
+        version: 19.0.0-rc.0
       turbo:
         specifier: ^2.0.4
         version: 2.10.4
@@ -3139,8 +3145,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.9.4:
-    resolution: {integrity: sha512-yWG/o/4oJfo036EKAfK6ACAoDOfHeRHx4tuxkfBZiauURiaSmYwlpOr5LQqKtIkRD2z1PLteme2WoxEnj4tHTg==}
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -6679,13 +6685,13 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-tailwindcss@0.6.14(prettier@3.9.4):
+  prettier-plugin-tailwindcss@0.6.14(prettier@3.3.3):
     dependencies:
-      prettier: 3.9.4
+      prettier: 3.3.3
 
   prettier@2.8.8: {}
 
-  prettier@3.9.4: {}
+  prettier@3.3.3: {}
 
   pretty-format@27.5.1:
     dependencies:

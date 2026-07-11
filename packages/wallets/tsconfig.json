@@ -1,5 +1,5 @@
 {
-  "extends": "@stellar-starter-kit/tsconfig/react-library.json",
+  "extends": "../tsconfig/react-library.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
