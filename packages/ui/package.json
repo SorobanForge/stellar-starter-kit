@@ -23,10 +23,10 @@
   "devDependencies": {
     "@stellar-starter-kit/tsconfig": "workspace:*",
     "@stellar-starter-kit/eslint-config": "workspace:*",
-    "@types/react": "^19.0.0-rc.0",
-    "@types/react-dom": "^19.0.0-rc.0",
-    "react": "19.0.0-rc.0",
-    "react-dom": "19.0.0-rc.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "typescript": "^5.5.2",
     "vitest": "^4.1.10"
   }
