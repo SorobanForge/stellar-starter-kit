@@ -16,7 +16,7 @@
 
 ---
 
-## 🎯 Why This Project Exists
+## 🎯 Why This Project Exists...
 
 Scaffolding Stellar and Soroban applications historically required developers to manually orchestrate multiple disconnected tooling systems: client libraries, custom wallet adapter wrappers, smart contract bindings, environment setups, and testing frameworks.
 
