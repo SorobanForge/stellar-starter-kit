@@ -6,7 +6,7 @@
 
 **The fastest way to build, test, and deploy modern Stellar and Soroban applications.**
 
-[![CI Status](https://img.shields.io/github/actions/workflow/status/techAlhaji/stellar-starter-kit/ci.yml?branch=main&style=for-the-badge&logo=github&logoColor=white)](https://github.com/techAlhaji/stellar-starter-kit/actions)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/SorobanForge/stellar-starter-kit/ci.yml?branch=main&style=for-the-badge&logo=github&logoColor=white)](https://github.com/SorobanForge/stellar-starter-kit/actions)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
 [![Next.js Version](https://img.shields.io/badge/Next.js-15.0-black?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
@@ -16,7 +16,7 @@
 
 ---
 
-## 🎯 Why This Project Exists
+## 🎯 Why This Project Exists...
 
 Scaffolding Stellar and Soroban applications historically required developers to manually orchestrate multiple disconnected tooling systems: client libraries, custom wallet adapter wrappers, smart contract bindings, environment setups, and testing frameworks.
 
@@ -117,9 +117,18 @@ stellar-starter-kit/
 
 ## 🖼️ Application Showcase
 
+### 1. Main Dashboard
+
 <div align="center">
   <img src="public/dashboard.png" alt="Cosmic Dashboard Showcase" width="85%" style="border-radius: 12px; border: 1px solid #1e293b;"/>
   <p><em>Cosmic Dapp Interface Dashboard Preview</em></p>
+</div>
+
+### 2. Counter Smart Contract Dashboard
+
+<div align="center">
+  <img src="public/counter.png" alt="Counter Smart Contract Interface" width="85%" style="border-radius: 12px; border: 1px solid #1e293b;"/>
+  <p><em>Interact with Soroban smart contracts directly from the UI with real-time transaction logs and state synchronization.</em></p>
 </div>
 
 ---
@@ -131,7 +140,7 @@ stellar-starter-kit/
 Clone the repository and install dependencies using pnpm:
 
 ```bash
-git clone https://github.com/techAlhaji/stellar-starter-kit.git
+git clone https://github.com/SorobanForge/stellar-starter-kit.git
 cd stellar-starter-kit
 pnpm install
 ```

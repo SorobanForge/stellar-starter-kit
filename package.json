@@ -22,7 +22,9 @@
     "download:cli": "powershell -ExecutionPolicy Bypass -File ./scripts/download-stellar-cli.ps1",
     "build:contracts": "powershell -ExecutionPolicy Bypass -File ./scripts/build-contracts.ps1",
     "optimize": "powershell -ExecutionPolicy Bypass -File ./scripts/optimize-contracts.ps1",
-    "deploy:testnet": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-contracts.ps1"
+    "deploy:testnet": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-contracts.ps1",
+    "deploy:counter": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-contracts.ps1",
+    "invoke:counter": "powershell -ExecutionPolicy Bypass -File ./scripts/invoke-counter.ps1"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.7",
@@ -37,7 +39,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
-    "prettier": "3.3.3",
+    "prettier": "3.9.5",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "react": "^19.0.0",
     "@types/react": "^19.0.0",
@@ -46,8 +48,11 @@
   },
   "packageManager": "pnpm@9.4.0",
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "!(*.d).{js,jsx,ts,tsx}": [
       "eslint --fix",
+      "prettier --write"
+    ],
+    "*.d.ts": [
       "prettier --write"
     ],
     "*.{json,md,css,scss}": [
