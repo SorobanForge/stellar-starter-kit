@@ -117,9 +117,18 @@ stellar-starter-kit/
 
 ## 🖼️ Application Showcase
 
+### 1. Main Dashboard
+
 <div align="center">
   <img src="public/dashboard.png" alt="Cosmic Dashboard Showcase" width="85%" style="border-radius: 12px; border: 1px solid #1e293b;"/>
   <p><em>Cosmic Dapp Interface Dashboard Preview</em></p>
+</div>
+
+### 2. Counter Smart Contract Dashboard
+
+<div align="center">
+  <img src="public/counter.png" alt="Counter Smart Contract Interface" width="85%" style="border-radius: 12px; border: 1px solid #1e293b;"/>
+  <p><em>Interact with Soroban smart contracts directly from the UI with real-time transaction logs and state synchronization.</em></p>
 </div>
 
 ---
@@ -199,10 +208,8 @@ pnpm invoke:counter
 
 Our reference smart contract is actively deployed on **Stellar Testnet**:
 
-- **Contract ID**: `CCH5B5TFLLN56KB4B762CA2IVX4MYRDDMYXDYIEITCXYIGMIEMLWWCSF`
-- **Stellar.expert Explorer**: [View Contract Details](https://stellar.expert/explorer/testnet/contract/CCH5B5TFLLN56KB4B762CA2IVX4MYRDDMYXDYIEITCXYIGMIEMLWWCSF)
-- **WASM Upload Transaction**: [Explorer Link](https://stellar.expert/explorer/testnet/tx/f75b79a3f1d8c196886b2a21dfc8947720b44b354ba14396dc67cd00d6f2be63)
-- **Contract Deploy Transaction**: [Explorer Link](https://stellar.expert/explorer/testnet/tx/933f41945e44434c25ed4300439f63da758621ac2eefee787818cee9f9b446bc)
+- **Contract ID**: `CCATCXDTSJT4CJBVDXPJKTLFIIW44ZODSSTRRIZR73LPB7ZNXXM7D6D4`
+- **Stellar.expert Explorer**: [View Contract Details](https://stellar.expert/explorer/testnet/contract/CCATCXDTSJT4CJBVDXPJKTLFIIW44ZODSSTRRIZR73LPB7ZNXXM7D6D4)
 
 ---
 
