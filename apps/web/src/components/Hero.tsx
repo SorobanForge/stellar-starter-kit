@@ -91,7 +91,7 @@ export default function Hero() {
                 Get Started <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="https://github.com/techAlhaji/stellar-starter-kit"
+                href="https://github.com/SorobanForge/stellar-starter-kit"
                 target="_blank"
                 rel="noreferrer"
                 className="border-slate-850 text-slate-350 inline-flex h-12 items-center justify-center gap-2 rounded-xl border bg-slate-950/40 px-8 font-semibold transition-all hover:bg-slate-900 hover:text-white"

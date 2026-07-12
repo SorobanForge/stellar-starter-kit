@@ -28,7 +28,7 @@ export default function Footer() {
             {/* Social icons */}
             <div className="text-slate-550 mt-6 flex items-center gap-4">
               <a
-                href="https://github.com/techAlhaji/stellar-starter-kit"
+                href="https://github.com/SorobanForge/stellar-starter-kit"
                 target="_blank"
                 rel="noreferrer"
                 className="transition-colors hover:text-white"
@@ -104,7 +104,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
                 <a
-                  href="https://github.com/techAlhaji/stellar-starter-kit/blob/main/CONTRIBUTING.md"
+                  href="https://github.com/SorobanForge/stellar-starter-kit/blob/main/CONTRIBUTING.md"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-white"
@@ -114,7 +114,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://github.com/techAlhaji/stellar-starter-kit/blob/main/SECURITY.md"
+                  href="https://github.com/SorobanForge/stellar-starter-kit/blob/main/SECURITY.md"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-white"
@@ -124,7 +124,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://github.com/techAlhaji/stellar-starter-kit/blob/main/LICENSE"
+                  href="https://github.com/SorobanForge/stellar-starter-kit/blob/main/LICENSE"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-white"

@@ -22,7 +22,7 @@ export default function CTA() {
             template.&rdquo;
           </p>
           <a
-            href="https://github.com/techAlhaji/stellar-starter-kit/discussions"
+            href="https://github.com/SorobanForge/stellar-starter-kit/discussions"
             target="_blank"
             rel="noreferrer"
             className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 transition-colors hover:text-purple-300"
@@ -47,7 +47,7 @@ export default function CTA() {
             Get Started <ArrowRight className="h-4 w-4" />
           </a>
           <a
-            href="https://github.com/techAlhaji/stellar-starter-kit"
+            href="https://github.com/SorobanForge/stellar-starter-kit"
             target="_blank"
             rel="noreferrer"
             className="border-slate-850 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border bg-slate-950/40 px-8 font-semibold text-slate-300 transition-all hover:bg-slate-900 hover:text-white sm:w-auto"

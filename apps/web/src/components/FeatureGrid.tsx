@@ -38,7 +38,7 @@ const FEATURES = [
     title: 'Flagship CI/CD Workflows',
     description:
       'Enforce standard formatting via commitlint, husky git hooks, code vulnerability checks using CodeQL, and version tags through Changesets.',
-    link: 'https://github.com/techAlhaji/stellar-starter-kit/blob/main/CONTRIBUTING.md',
+    link: 'https://github.com/SorobanForge/stellar-starter-kit/blob/main/CONTRIBUTING.md',
   },
   {
     icon: <Layers3 className="h-6 w-6 text-amber-400" />,

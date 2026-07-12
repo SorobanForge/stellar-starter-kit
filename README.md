@@ -6,7 +6,7 @@
 
 **The fastest way to build, test, and deploy modern Stellar and Soroban applications.**
 
-[![CI Status](https://img.shields.io/github/actions/workflow/status/techAlhaji/stellar-starter-kit/ci.yml?branch=main&style=for-the-badge&logo=github&logoColor=white)](https://github.com/techAlhaji/stellar-starter-kit/actions)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/SorobanForge/stellar-starter-kit/ci.yml?branch=main&style=for-the-badge&logo=github&logoColor=white)](https://github.com/SorobanForge/stellar-starter-kit/actions)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
 [![Next.js Version](https://img.shields.io/badge/Next.js-15.0-black?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
@@ -140,7 +140,7 @@ stellar-starter-kit/
 Clone the repository and install dependencies using pnpm:
 
 ```bash
-git clone https://github.com/techAlhaji/stellar-starter-kit.git
+git clone https://github.com/SorobanForge/stellar-starter-kit.git
 cd stellar-starter-kit
 pnpm install
 ```

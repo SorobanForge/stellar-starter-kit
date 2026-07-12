@@ -10,7 +10,7 @@ const SAMPLES = {
     label: 'Quick Start',
     filename: 'terminal',
     code: `# 1. Clone the flagship monorepo
-git clone https://github.com/techAlhaji/stellar-starter-kit.git
+git clone https://github.com/SorobanForge/stellar-starter-kit.git
 cd stellar-starter-kit
 
 # 2. Install workspace dependencies
