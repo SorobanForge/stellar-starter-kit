@@ -16,7 +16,7 @@
 
 ---
 
-## 🎯 Why This Project Exists
+## 🎯 Why This Project Exists...
 
 Scaffolding Stellar and Soroban applications historically required developers to manually orchestrate multiple disconnected tooling systems: client libraries, custom wallet adapter wrappers, smart contract bindings, environment setups, and testing frameworks.
 
@@ -208,8 +208,10 @@ pnpm invoke:counter
 
 Our reference smart contract is actively deployed on **Stellar Testnet**:
 
-- **Contract ID**: `CCATCXDTSJT4CJBVDXPJKTLFIIW44ZODSSTRRIZR73LPB7ZNXXM7D6D4`
-- **Stellar.expert Explorer**: [View Contract Details](https://stellar.expert/explorer/testnet/contract/CCATCXDTSJT4CJBVDXPJKTLFIIW44ZODSSTRRIZR73LPB7ZNXXM7D6D4)
+- **Contract ID**: `CCH5B5TFLLN56KB4B762CA2IVX4MYRDDMYXDYIEITCXYIGMIEMLWWCSF`
+- **Stellar.expert Explorer**: [View Contract Details](https://stellar.expert/explorer/testnet/contract/CCH5B5TFLLN56KB4B762CA2IVX4MYRDDMYXDYIEITCXYIGMIEMLWWCSF)
+- **WASM Upload Transaction**: [Explorer Link](https://stellar.expert/explorer/testnet/tx/f75b79a3f1d8c196886b2a21dfc8947720b44b354ba14396dc67cd00d6f2be63)
+- **Contract Deploy Transaction**: [Explorer Link](https://stellar.expert/explorer/testnet/tx/933f41945e44434c25ed4300439f63da758621ac2eefee787818cee9f9b446bc)
 
 ---
 
