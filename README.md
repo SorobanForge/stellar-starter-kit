@@ -75,14 +75,14 @@ graph TD
 
 ```mermaid
 flowchart LR
-    web[@stellar-starter-kit/web] --> sdk[@stellar-starter-kit/sdk]
-    web --> hooks[@stellar-starter-kit/hooks]
-    web --> ui[@stellar-starter-kit/ui]
-    web --> wallets[@stellar-starter-kit/wallets]
-    sdk --> core[@stellar-starter-kit/core]
+    web["@stellar-starter-kit/web"] --> sdk["@stellar-starter-kit/sdk"]
+    web --> hooks["@stellar-starter-kit/hooks"]
+    web --> ui["@stellar-starter-kit/ui"]
+    web --> wallets["@stellar-starter-kit/wallets"]
+    sdk --> core["@stellar-starter-kit/core"]
     hooks --> wallets
-    testing[@stellar-starter-kit/testing] --> types[@stellar-starter-kit/types]
-    utils[@stellar-starter-kit/utils] --> types
+    testing["@stellar-starter-kit/testing"] --> types["@stellar-starter-kit/types"]
+    utils["@stellar-starter-kit/utils"] --> types
 ```
 
 ---
