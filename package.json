@@ -19,12 +19,14 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release-packages": "changeset publish",
-    "download:cli": "powershell -ExecutionPolicy Bypass -File ./scripts/download-stellar-cli.ps1",
-    "build:contracts": "powershell -ExecutionPolicy Bypass -File ./scripts/build-contracts.ps1",
-    "optimize": "powershell -ExecutionPolicy Bypass -File ./scripts/optimize-contracts.ps1",
-    "deploy:testnet": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-contracts.ps1",
-    "deploy:counter": "powershell -ExecutionPolicy Bypass -File ./scripts/deploy-contracts.ps1",
-    "invoke:counter": "powershell -ExecutionPolicy Bypass -File ./scripts/invoke-counter.ps1"
+    "download:cli": "node scripts/run.js download-stellar-cli",
+    "build:contracts": "node scripts/run.js build-contracts",
+    "optimize": "node scripts/run.js optimize-contracts",
+    "deploy:testnet": "node scripts/run.js deploy-contracts",
+    "deploy:counter": "node scripts/run.js deploy-contracts",
+    "deploy:escrow": "node scripts/run.js deploy-contracts",
+    "invoke:counter": "node scripts/run.js invoke-counter",
+    "invoke:escrow": "node scripts/run.js invoke-escrow"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.7",
