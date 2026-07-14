@@ -43,11 +43,11 @@ Scaffolding Stellar and Soroban applications historically required developers to
 
 ```mermaid
 graph TD
-    subgraph apps/
+    subgraph apps ["apps/"]
         Web[web - Next.js 15 App Portal]
     end
 
-    subgraph packages/
+    subgraph packages ["packages/"]
         SDK[sdk - High-level Orchestration]
         Core[core - Stellar Horizon wraps]
         Hooks[hooks - React state & wallet balance]
@@ -75,14 +75,14 @@ graph TD
 
 ```mermaid
 flowchart LR
-    web[@stellar-starter-kit/web] --> sdk[@stellar-starter-kit/sdk]
-    web --> hooks[@stellar-starter-kit/hooks]
-    web --> ui[@stellar-starter-kit/ui]
-    web --> wallets[@stellar-starter-kit/wallets]
-    sdk --> core[@stellar-starter-kit/core]
+    web["@stellar-starter-kit/web"] --> sdk["@stellar-starter-kit/sdk"]
+    web --> hooks["@stellar-starter-kit/hooks"]
+    web --> ui["@stellar-starter-kit/ui"]
+    web --> wallets["@stellar-starter-kit/wallets"]
+    sdk --> core["@stellar-starter-kit/core"]
     hooks --> wallets
-    testing[@stellar-starter-kit/testing] --> types[@stellar-starter-kit/types]
-    utils[@stellar-starter-kit/utils] --> types
+    testing["@stellar-starter-kit/testing"] --> types["@stellar-starter-kit/types"]
+    utils["@stellar-starter-kit/utils"] --> types
 ```
 
 ---
