@@ -42,7 +42,7 @@ _Focus: Key wallet integrations and smart contract deployment tooling._
 
 - [x] Implement `@stellar-starter-kit/wallets` package.
   - [x] Connect with Freighter wallet.
-  - [x] Connect with Albedo, Rabe, and Hana wallets.
+  - [x] Connect with Albedo, Rabet, and Hana wallets.
   - [ ] Support WalletConnect for mobile wallets.
 - [x] Scaffolding and hooks for Soroban smart contract interactions.
   - [x] Automatic type generation helper from WASM files.

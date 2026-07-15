@@ -1,9 +1,9 @@
 # Global owners
-*       @techAlhaji
+*       @SorobanForge
 
 # Specific configurations
-/.github/workflows/   @techAlhaji
-/apps/                @techAlhaji
-/packages/            @techAlhaji
-/examples/            @techAlhaji
-/docs/                @techAlhaji
+/.github/workflows/   @SorobanForge
+/apps/                @SorobanForge
+/packages/            @SorobanForge
+/examples/            @SorobanForge
+/docs/                @SorobanForge

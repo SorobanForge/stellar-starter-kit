@@ -11,7 +11,7 @@ const FAQS = [
   },
   {
     q: 'Which wallets are supported?',
-    a: 'We provide immediate support for Freighter, Albedo, Hana, and Rabe wallets out-of-the-box. Connecting new wallets is simple: import the driver and hook it into our central multi-wallet provider inside @stellar-starter-kit/wallets.',
+    a: 'We provide immediate support for Freighter, Albedo, Hana, and Rabet wallets out-of-the-box. Connecting new wallets is simple: import the driver and hook it into our central multi-wallet provider inside @stellar-starter-kit/wallets.',
   },
   {
     q: 'How do I contribute?',

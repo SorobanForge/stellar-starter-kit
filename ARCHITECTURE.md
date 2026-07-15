@@ -64,7 +64,7 @@ Contains the Soroban Rust smart contract workspace.
 
 Contains internal, highly reusable library packages.
 
-- **`packages/wallets`**: Aggregates Stellar wallets (Freighter, Albedo, Rabe, Hana) under a unified React Context and React Hook.
+- **`packages/wallets`**: Aggregates Stellar wallets (Freighter, Albedo, Rabet, Hana) under a unified React Context and React Hook.
 - **`packages/contracts`**: Contains generated Soroban TypeScript bindings, helper hooks, and client wrappers to interact with deployed WASM smart contracts.
 - **`packages/ui`**: Component library containing custom tailwind-styled shadcn/ui components customized for Stellar interactions (wallet buttons, transaction status indicators).
 - **`packages/tsconfig`**: Houses base TypeScript configuration files inherited by other packages and apps.
