@@ -3,7 +3,11 @@ resolver = "2"
 
 members = [
     "counter",
+    "escrow",
 ]
 
 [workspace.dependencies]
-soroban-sdk = "21.6.0"
+soroban-sdk = "27.0.0"
+
+[patch.crates-io]
+ed25519-dalek = { path = "patches/ed25519-dalek" }
