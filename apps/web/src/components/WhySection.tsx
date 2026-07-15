@@ -18,7 +18,7 @@ const REASONS = [
   {
     icon: <RefreshCw className="h-5 w-5 text-pink-400" />,
     title: 'Multi-Wallet Out of the Box',
-    desc: 'Ready-to-use wallet context hook with build support for Freighter, Albedo, Hana, and Rabe providers. Plug-and-play wallet adapters.',
+    desc: 'Ready-to-use wallet context hook with build support for Freighter, Albedo, Hana, and Rabet providers. Plug-and-play wallet adapters.',
   },
   {
     icon: <Users className="h-5 w-5 text-emerald-400" />,

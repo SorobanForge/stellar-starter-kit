@@ -1,4 +1,5 @@
 #![cfg(test)]
+#![allow(deprecated, elided_lifetimes_in_paths, mismatched_lifetime_syntaxes)]
 use super::*;
 use soroban_sdk::{
     testutils::{Address as _, Events, Ledger},

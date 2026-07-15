@@ -16,7 +16,7 @@ const FEATURES = [
     icon: <Wallet className="h-6 w-6 text-cyan-400" />,
     title: 'Multi-Wallet Adapters',
     description:
-      'Immediate compatibility with Freighter, Albedo, Hana, and Rabe wallets via a unified provider context. Handle connections, balances, and signing without boilerplate.',
+      'Immediate compatibility with Freighter, Albedo, Hana, and Rabet wallets via a unified provider context. Handle connections, balances, and signing without boilerplate.',
     link: '#examples',
   },
   {

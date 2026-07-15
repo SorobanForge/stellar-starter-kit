@@ -14,7 +14,7 @@ const MILESTONES = [
   {
     version: 'v0.2',
     title: 'Wallet SDK',
-    desc: 'Pre-configured wallet context hooks supporting Freighter, Albedo, Hana, and Rabe connectors.',
+    desc: 'Pre-configured wallet context hooks supporting Freighter, Albedo, Hana, and Rabet connectors.',
     done: true,
   },
   {

@@ -26,14 +26,14 @@ Scaffolding Stellar and Soroban applications historically required developers to
 
 ## ⚖️ Comparison with Alternatives
 
-| Feature / Tool             |        `stellar-starter-kit`         | Manual SDK Scaffolding | Standard React templates |
-| :------------------------- | :----------------------------------: | :--------------------: | :----------------------: |
-| **Monorepo Ready**         |        **Yes** (pnpm + Turbo)        |           No           |            No            |
-| **Pre-configured Wallets** | **Yes** (Freighter/Albedo/Rabe/Hana) |           No           |            No            |
-| **Soroban Bindings Sync**  |               **Yes**                |         Manual         |            No            |
-| **Conventional Commits**   |     **Yes** (Commitlint + Husky)     |           No           |            No            |
-| **Automated Releases**     |         **Yes** (Changesets)         |           No           |            No            |
-| **Shared Styling System**  |      **Yes** (Cosmic Theme CSS)      |           No           |            No            |
+| Feature / Tool             |         `stellar-starter-kit`         | Manual SDK Scaffolding | Standard React templates |
+| :------------------------- | :-----------------------------------: | :--------------------: | :----------------------: |
+| **Monorepo Ready**         |        **Yes** (pnpm + Turbo)         |           No           |            No            |
+| **Pre-configured Wallets** | **Yes** (Freighter/Albedo/Rabet/Hana) |           No           |            No            |
+| **Soroban Bindings Sync**  |                **Yes**                |         Manual         |            No            |
+| **Conventional Commits**   |     **Yes** (Commitlint + Husky)      |           No           |            No            |
+| **Automated Releases**     |         **Yes** (Changesets)          |           No           |            No            |
+| **Shared Styling System**  |      **Yes** (Cosmic Theme CSS)       |           No           |            No            |
 
 ---
 
@@ -272,7 +272,7 @@ Yes. The network passphrase, Horizon API, and Soroban RPC URL are fully configur
 ## 🗺️ Roadmap & Milestones
 
 - **v0.1**: Scaffold Monorepo workspace layouts, Next.js 15 dashboard, and mock test coverage.
-- **v0.2**: Integrate wallet adapter hooks (`useWallet`) for Freighter, Albedo, Hana, and Rabe.
+- **v0.2**: Integrate wallet adapter hooks (`useWallet`) for Freighter, Albedo, Hana, and Rabet.
 - **v0.5**: Smart contracts compiler templates and auto-generated bindings pipeline.
 - **v1.0**: Production audit checks, multi-network switch layouts, and sandbox testing.
 

@@ -1,6 +1,8 @@
 #![no_std]
+#![allow(deprecated)]
+#![allow(clippy::too_many_arguments)]
 use soroban_sdk::{
-    contract, contracterror, contractimpl, contracttype, symbol_short, token, Address, Env, Symbol,
+    contract, contracterror, contractimpl, contracttype, symbol_short, token, Address, Env,
 };
 
 #[contracterror]
@@ -116,7 +118,7 @@ impl EscrowContract {
 
         // Perform token transfer
         let token_client = token::Client::new(&env, &escrow.token);
-        token_client.transfer(&escrow.payer, &env.current_contract_address(), &escrow.amount);
+        token_client.transfer(&escrow.payer, env.current_contract_address(), &escrow.amount);
 
         escrow.status = EscrowStatus::Funded;
         env.storage().persistent().set(&key, &escrow);

@@ -19,7 +19,7 @@ const NODES = {
     items: [
       {
         name: '@stellar-starter-kit/wallets',
-        detail: 'Unified context for Freighter, Albedo, Hana, and Rabe.',
+        detail: 'Unified context for Freighter, Albedo, Hana, and Rabet.',
       },
       {
         name: '@stellar-starter-kit/ui',
