@@ -14,7 +14,7 @@ const WALLETS = [
     desc: 'Secure web wallet interface. Ideal for instant browser setups without extension requirements.',
   },
   {
-    name: 'Rabe',
+    name: 'Rabet',
     desc: 'User friendly mobile and web wallet connector. Safe transaction signing adapter.',
   },
   {

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Github, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
 import Logo from './Logo';
 
 export default function Header() {
@@ -34,6 +35,18 @@ export default function Header() {
           <a href="/docs" className="flex items-center gap-1 transition-colors hover:text-white">
             Docs <ExternalLink className="h-3.5 w-3.5" />
           </a>
+          <Link
+            href="/counter"
+            className="font-semibold text-purple-400 transition-colors hover:text-purple-300"
+          >
+            Counter Demo
+          </Link>
+          <Link
+            href="/escrow"
+            className="font-semibold text-cyan-400 transition-colors hover:text-cyan-300"
+          >
+            Escrow Demo
+          </Link>
         </nav>
 
         <div className="flex items-center gap-4">

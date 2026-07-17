@@ -46,7 +46,7 @@ export default function CounterDemo() {
 
   const contractId = deployments.counter;
   const rpcUrl = 'https://soroban-testnet.stellar.org';
-  const passphrase = 'Test Horizon Network ; Public Sep 2015';
+  const passphrase = 'Test SDF Network ; September 2015';
 
   const addLog = useCallback(
     (type: LogEntry['type'], status: LogEntry['status'], details: string, hash?: string) => {
@@ -145,7 +145,19 @@ export default function CounterDemo() {
       await fetchCount(true);
     } catch (err) {
       console.error(err);
-      const errorMessage = err instanceof Error ? err.message : 'Transaction failed';
+      let errorMessage = 'Transaction failed';
+      if (err instanceof Error) {
+        errorMessage = err.message;
+      } else if (typeof err === 'string') {
+        errorMessage = err;
+      }
+
+      if (
+        errorMessage.toLowerCase().includes('user rejected') ||
+        errorMessage.toLowerCase().includes('declined')
+      ) {
+        errorMessage = 'Transaction signature declined by user.';
+      }
       setError(errorMessage);
       addLog(type, 'error', `Transaction failed: ${errorMessage}`);
     } finally {
@@ -227,7 +239,19 @@ export default function CounterDemo() {
                   ) : (
                     <div className="flex gap-2">
                       <button
-                        onClick={() => connect('freighter')}
+                        onClick={async () => {
+                          setError(null);
+                          try {
+                            await connect('freighter');
+                          } catch (err) {
+                            console.error(err);
+                            setError(
+                              err instanceof Error
+                                ? err.message
+                                : 'Failed to connect Freighter wallet.',
+                            );
+                          }
+                        }}
                         disabled={isConnecting}
                         className="flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 px-4 py-1.5 text-xs font-semibold text-white shadow-md transition-all hover:brightness-110"
                       >

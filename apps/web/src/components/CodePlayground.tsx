@@ -64,7 +64,7 @@ export function buildPaymentTx(source: string, dest: string, amount: string, fee
 const client = new CounterClient.Client({
   contractId: 'CBOSYQA...',
   rpcUrl: 'https://soroban-testnet.stellar.org',
-  networkPassphrase: 'Test Horizon Network ; Public Sep 2015'
+  networkPassphrase: 'Test SDF Network ; September 2015'
 });
 
 // Fetch current count & invoke on-chain increment method

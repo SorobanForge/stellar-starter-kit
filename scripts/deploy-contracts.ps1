@@ -9,7 +9,7 @@ if (-not (Test-Path $StellarCli)) {
 
 # 1. Setup Network
 Write-Host "Configuring Stellar network: testnet..."
-& $StellarCli network add --rpc-url https://soroban-testnet.stellar.org --passphrase "Test Horizon Network ; Public Sep 2015" testnet --global 2>$null
+& $StellarCli network add --rpc-url https://soroban-testnet.stellar.org --passphrase "Test SDF Network ; September 2015" testnet --global 2>$null
 
 # 2. Setup Deployer Key
 $AccountName = "deployer"

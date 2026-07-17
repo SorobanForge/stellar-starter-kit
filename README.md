@@ -26,14 +26,14 @@ Scaffolding Stellar and Soroban applications historically required developers to
 
 ## ⚖️ Comparison with Alternatives
 
-| Feature / Tool             |        `stellar-starter-kit`         | Manual SDK Scaffolding | Standard React templates |
-| :------------------------- | :----------------------------------: | :--------------------: | :----------------------: |
-| **Monorepo Ready**         |        **Yes** (pnpm + Turbo)        |           No           |            No            |
-| **Pre-configured Wallets** | **Yes** (Freighter/Albedo/Rabe/Hana) |           No           |            No            |
-| **Soroban Bindings Sync**  |               **Yes**                |         Manual         |            No            |
-| **Conventional Commits**   |     **Yes** (Commitlint + Husky)     |           No           |            No            |
-| **Automated Releases**     |         **Yes** (Changesets)         |           No           |            No            |
-| **Shared Styling System**  |      **Yes** (Cosmic Theme CSS)      |           No           |            No            |
+| Feature / Tool             |         `stellar-starter-kit`         | Manual SDK Scaffolding | Standard React templates |
+| :------------------------- | :-----------------------------------: | :--------------------: | :----------------------: |
+| **Monorepo Ready**         |        **Yes** (pnpm + Turbo)         |           No           |            No            |
+| **Pre-configured Wallets** | **Yes** (Freighter/Albedo/Rabet/Hana) |           No           |            No            |
+| **Soroban Bindings Sync**  |                **Yes**                |         Manual         |            No            |
+| **Conventional Commits**   |     **Yes** (Commitlint + Husky)      |           No           |            No            |
+| **Automated Releases**     |         **Yes** (Changesets)          |           No           |            No            |
+| **Shared Styling System**  |      **Yes** (Cosmic Theme CSS)       |           No           |            No            |
 
 ---
 
@@ -43,11 +43,11 @@ Scaffolding Stellar and Soroban applications historically required developers to
 
 ```mermaid
 graph TD
-    subgraph apps/
+    subgraph apps ["apps/"]
         Web[web - Next.js 15 App Portal]
     end
 
-    subgraph packages/
+    subgraph packages ["packages/"]
         SDK[sdk - High-level Orchestration]
         Core[core - Stellar Horizon wraps]
         Hooks[hooks - React state & wallet balance]
@@ -75,14 +75,14 @@ graph TD
 
 ```mermaid
 flowchart LR
-    web[@stellar-starter-kit/web] --> sdk[@stellar-starter-kit/sdk]
-    web --> hooks[@stellar-starter-kit/hooks]
-    web --> ui[@stellar-starter-kit/ui]
-    web --> wallets[@stellar-starter-kit/wallets]
-    sdk --> core[@stellar-starter-kit/core]
+    web["@stellar-starter-kit/web"] --> sdk["@stellar-starter-kit/sdk"]
+    web --> hooks["@stellar-starter-kit/hooks"]
+    web --> ui["@stellar-starter-kit/ui"]
+    web --> wallets["@stellar-starter-kit/wallets"]
+    sdk --> core["@stellar-starter-kit/core"]
     hooks --> wallets
-    testing[@stellar-starter-kit/testing] --> types[@stellar-starter-kit/types]
-    utils[@stellar-starter-kit/utils] --> types
+    testing["@stellar-starter-kit/testing"] --> types["@stellar-starter-kit/types"]
+    utils["@stellar-starter-kit/utils"] --> types
 ```
 
 ---
@@ -188,7 +188,7 @@ Navigate to [http://localhost:3000](http://localhost:3000).
 
 ### 5. Smart Contract Workflow
 
-You can compile, optimize, deploy, and invoke our flagship Counter smart contract on-chain using:
+You can compile, optimize, deploy, and invoke our flagship smart contracts on-chain using:
 
 ```bash
 # Build Rust workspace contracts to WASM
@@ -197,21 +197,23 @@ pnpm build:contracts
 # Optimize WASM binaries for minimum gas size
 pnpm optimize
 
-# Deploy to Stellar Testnet and generate typed TypeScript client bindings
+# Deploy contracts to Stellar Testnet and generate typed TypeScript client bindings
 pnpm deploy:counter
+pnpm deploy:escrow
 
 # Verify execution by invoking on-chain
 pnpm invoke:counter
+pnpm invoke:escrow
 ```
 
 ### 🌐 Active Testnet Deployment Details
 
-Our reference smart contract is actively deployed on **Stellar Testnet**:
+Our reference smart contracts are actively deployed on **Stellar Testnet**:
 
-- **Contract ID**: `CCH5B5TFLLN56KB4B762CA2IVX4MYRDDMYXDYIEITCXYIGMIEMLWWCSF`
-- **Stellar.expert Explorer**: [View Contract Details](https://stellar.expert/explorer/testnet/contract/CCH5B5TFLLN56KB4B762CA2IVX4MYRDDMYXDYIEITCXYIGMIEMLWWCSF)
-- **WASM Upload Transaction**: [Explorer Link](https://stellar.expert/explorer/testnet/tx/f75b79a3f1d8c196886b2a21dfc8947720b44b354ba14396dc67cd00d6f2be63)
-- **Contract Deploy Transaction**: [Explorer Link](https://stellar.expert/explorer/testnet/tx/933f41945e44434c25ed4300439f63da758621ac2eefee787818cee9f9b446bc)
+- **Counter Contract ID**: `CAOTLOBANATQD3FFNUDD7CVRSUYU4RXKIQPOMIOE67BGRH34ALKMGPW3`
+  - [Stellar.expert Explorer Link](https://stellar.expert/explorer/testnet/contract/CAOTLOBANATQD3FFNUDD7CVRSUYU4RXKIQPOMIOE67BGRH34ALKMGPW3)
+- **Escrow Contract ID**: `CBSVMERZZTAXXDG4H3VSLN26XACXXOVOITJI45XPY4PGJJ7SUSKO4AS7`
+  - [Stellar.expert Explorer Link](https://stellar.expert/explorer/testnet/contract/CBSVMERZZTAXXDG4H3VSLN26XACXXOVOITJI45XPY4PGJJ7SUSKO4AS7)
 
 ---
 
@@ -270,7 +272,7 @@ Yes. The network passphrase, Horizon API, and Soroban RPC URL are fully configur
 ## 🗺️ Roadmap & Milestones
 
 - **v0.1**: Scaffold Monorepo workspace layouts, Next.js 15 dashboard, and mock test coverage.
-- **v0.2**: Integrate wallet adapter hooks (`useWallet`) for Freighter, Albedo, Hana, and Rabe.
+- **v0.2**: Integrate wallet adapter hooks (`useWallet`) for Freighter, Albedo, Hana, and Rabet.
 - **v0.5**: Smart contracts compiler templates and auto-generated bindings pipeline.
 - **v1.0**: Production audit checks, multi-network switch layouts, and sandbox testing.
 

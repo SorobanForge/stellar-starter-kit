@@ -148,7 +148,7 @@ export default function Footer() {
             License.
           </div>
           <div className="flex items-center gap-2">
-            <span>Maintained by techAlhaji and the community</span>
+            <span>Maintained by SorobanForge and the community</span>
             <Star className="h-3 w-3 fill-yellow-500/20 text-yellow-500/80" />
           </div>
         </div>

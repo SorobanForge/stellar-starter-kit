@@ -17,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cross-platform PowerShell helper script `scripts/setup-local-node.ps1` for Windows developers.
 - Root `package.json` command script `"node:local": "docker compose up -d"` for quick start-ups.
 - Persistent ledger data volume mapping in local docker-compose configuration.
+- Flagship multi-party **Escrow smart contract** (`contracts/escrow`) implementing agreement lifecycles (create, fund, release, refund, cancel), state transitions, deadline verification, and event emissions.
+- Detailed unit test suite in `contracts/escrow/src/test.rs` covering all happy paths, boundary checks, unauthorized operations, and status validations.
+- CLI automation scripts `scripts/invoke-escrow.sh` and `scripts/invoke-escrow.ps1` supporting deployment, validation, and full execution lifecycles on Stellar Testnet.
+- Added Next.js 15 Escrow dashboard page (`apps/web/src/app/escrow/page.tsx`) with integrated Freighter connection, creation forms, lifecycle management controls, and real-time execution event logs.
+- Added `EscrowClient` exports in `@stellar-starter-kit/contracts` package.
 
 ### Changed
 

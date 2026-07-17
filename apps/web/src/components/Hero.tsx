@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, ArrowRight, Terminal } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
@@ -83,18 +84,30 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="mt-10 flex flex-col gap-4 sm:flex-row"
             >
+              <Link
+                href="/counter"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 px-6 font-semibold text-white shadow-lg shadow-purple-500/10 transition-all hover:brightness-110"
+              >
+                Counter Demo <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/escrow"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-500 px-6 font-semibold text-white shadow-lg shadow-cyan-500/10 transition-all hover:brightness-110"
+              >
+                Escrow Demo <ArrowRight className="h-4 w-4" />
+              </Link>
               <a
                 href="#code"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 px-8 font-semibold text-white shadow-lg shadow-purple-500/10 transition-all hover:brightness-110"
+                className="border-slate-850 text-slate-350 inline-flex h-12 items-center justify-center gap-2 rounded-xl border bg-slate-950/40 px-8 font-semibold transition-all hover:bg-slate-900 hover:text-white"
                 aria-label="Get started by viewing setup instructions"
               >
-                Get Started <ArrowRight className="h-4 w-4" />
+                Get Started
               </a>
               <a
                 href="https://github.com/SorobanForge/stellar-starter-kit"
                 target="_blank"
                 rel="noreferrer"
-                className="border-slate-850 text-slate-350 inline-flex h-12 items-center justify-center gap-2 rounded-xl border bg-slate-950/40 px-8 font-semibold transition-all hover:bg-slate-900 hover:text-white"
+                className="border-slate-850 text-slate-350 inline-flex h-12 items-center justify-center gap-2 rounded-xl border bg-slate-950/40 px-8 font-semibold transition-all hover:bg-slate-900 hover:text-white sm:hidden md:inline-flex"
                 aria-label="View stellar starter kit source code on GitHub"
               >
                 <Github className="h-5 w-5" /> View on GitHub

@@ -1,4 +1,5 @@
 #![no_std]
+#![allow(deprecated)]
 use soroban_sdk::{contract, contractimpl, symbol_short, Env, Symbol};
 
 #[contract]
@@ -18,7 +19,7 @@ impl CounterContract {
         let mut count = Self::get(env.clone());
         count += 1;
         env.storage().instance().set(&COUNTER_KEY, &count);
-        
+
         // Extend storage TTL
         env.storage().instance().extend_ttl(100, 100);
 
@@ -30,12 +31,9 @@ impl CounterContract {
 
     /// Decrement the counter by 1. Prevents underflow (stops at 0). Emits a decrement event.
     pub fn decrement(env: Env) -> u32 {
-        let mut count = Self::get(env.clone());
-        if count > 0 {
-            count -= 1;
-        }
+        let count = Self::get(env.clone()).saturating_sub(1);
         env.storage().instance().set(&COUNTER_KEY, &count);
-        
+
         // Extend storage TTL
         env.storage().instance().extend_ttl(100, 100);
 
@@ -49,7 +47,7 @@ impl CounterContract {
     pub fn reset(env: Env) -> u32 {
         let count = 0;
         env.storage().instance().set(&COUNTER_KEY, &count);
-        
+
         // Extend storage TTL
         env.storage().instance().extend_ttl(100, 100);
 

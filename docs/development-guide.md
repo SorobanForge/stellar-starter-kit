@@ -82,6 +82,7 @@ Deploy the optimized contracts to Stellar Testnet and generate strongly-typed Ty
 
 ```bash
 pnpm deploy:counter
+pnpm deploy:escrow
 ```
 
 ### Invoke Contract via CLI
@@ -90,6 +91,7 @@ Demonstrate and verify contract execution on Stellar Testnet:
 
 ```bash
 pnpm invoke:counter
+pnpm invoke:escrow
 ```
 
 ### Verification & Linting

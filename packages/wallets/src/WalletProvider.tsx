@@ -5,6 +5,7 @@ import {
   isConnected as checkFreighterConnected,
   getPublicKey as getFreighterPublicKey,
   signTransaction as signFreighterTransaction,
+  requestAccess as requestFreighterAccess,
 } from '@stellar/freighter-api';
 import albedo from '@albedo-link/intent';
 
@@ -78,7 +79,11 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
         if (!isFreighterConnected) {
           throw new Error('Freighter wallet extension is not installed or enabled.');
         }
-        publicKey = await getFreighterPublicKey();
+        try {
+          publicKey = await requestFreighterAccess();
+        } catch (e) {
+          publicKey = await getFreighterPublicKey();
+        }
       } else if (provider === 'albedo') {
         const res = await albedo.publicKey({});
         publicKey = res.pubkey;
@@ -136,7 +141,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
       const passphrase =
         opts?.networkPassphrase ||
         (network === 'TESTNET'
-          ? 'Test Horizon Network ; Public Sep 2015'
+          ? 'Test SDF Network ; September 2015'
           : 'Public Global Stellar Network ; September 2015');
 
       try {
@@ -144,6 +149,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
           return await signFreighterTransaction(xdr, {
             network: network,
             networkPassphrase: passphrase,
+            accountToSign: activeAddress,
           });
         } else if (activeProvider === 'albedo') {
           const res = await albedo.tx({
@@ -167,8 +173,21 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
           throw new Error(`Signer not implemented for: ${activeProvider}`);
         }
       } catch (err) {
-        console.error('Transaction signing failed:', err);
-        const message = err instanceof Error ? err.message : 'Failed to sign transaction.';
+        let message = 'Failed to sign transaction.';
+        if (err instanceof Error) {
+          message = err.message;
+        } else if (typeof err === 'string') {
+          message = err;
+        }
+
+        if (
+          message.toLowerCase().includes('user rejected') ||
+          message.toLowerCase().includes('declined')
+        ) {
+          console.warn('Transaction signing cancelled by user:', err);
+        } else {
+          console.error('Transaction signing failed:', err);
+        }
         throw new Error(message);
       }
     },
