@@ -13,7 +13,7 @@
   "dependencies": {
     "@stellar/stellar-sdk": "^14.5.0",
     "@stellar/freighter-api": "^2.0.0",
-    "@albedo-link/intent": "^0.11.1"
+    "@albedo-link/intent": "^0.13.0"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0"

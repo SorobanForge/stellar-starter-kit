@@ -326,8 +326,8 @@ importers:
   packages/wallets:
     dependencies:
       '@albedo-link/intent':
-        specifier: ^0.11.1
-        version: 0.11.2
+        specifier: ^0.13.0
+        version: 0.13.0
       '@stellar/freighter-api':
         specifier: ^2.0.0
         version: 2.0.0
@@ -365,8 +365,8 @@ importers:
 
 packages:
 
-  '@albedo-link/intent@0.11.2':
-    resolution: {integrity: sha512-RBlbP79zFhboPoHplsiPW4/FsYEvw58Nnz5CQMm8peNCGmWgx5dIiFDmqcgGY5KEbmMGlRTGEFn+XAyka9L9ig==}
+  '@albedo-link/intent@0.13.0':
+    resolution: {integrity: sha512-A8CBXqGQEBMXhwxNXj5inC6HLjyx5Do7jW99NOFeecYd1nPUq8gfM0tvoNoR8H8JQ11aTl9tyQBuu/+l3xeBnQ==}
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -3812,7 +3812,7 @@ packages:
 
 snapshots:
 
-  '@albedo-link/intent@0.11.2': {}
+  '@albedo-link/intent@0.13.0': {}
 
   '@alloc/quick-lru@5.2.0': {}
 
