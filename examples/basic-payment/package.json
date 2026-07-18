@@ -12,6 +12,6 @@
   },
   "devDependencies": {
     "@stellar-starter-kit/tsconfig": "workspace:*",
-    "typescript": "^5.5.2"
+    "typescript": "^7.0.2"
   }
 }
