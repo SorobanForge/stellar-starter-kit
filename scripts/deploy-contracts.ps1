@@ -34,7 +34,7 @@ if (-not $HasKey) {
 }
 
 # 3. Deploy and Generate Bindings
-$OptimizedDir = Join-Path $WorkspaceRoot "contracts\target\wasm32-unknown-unknown\release"
+$OptimizedDir = Join-Path $WorkspaceRoot "contracts\target\wasm32v1-none\release"
 $DeploymentsFile = Join-Path $WorkspaceRoot "apps/web/src/generated/deployments.json"
 
 # Ensure output folder for deployments exists
