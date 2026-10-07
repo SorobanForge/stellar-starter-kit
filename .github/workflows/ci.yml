@@ -104,7 +104,7 @@ jobs:
           workspaces: contracts
 
       - name: Check Formatting
-        run: cargo fmt --manifest-path contracts/Cargo.toml -- --check
+        run: cargo fmt --manifest-path contracts/Cargo.toml --all -- --check
 
       - name: Run Clippy
         run: cargo clippy --manifest-path contracts/Cargo.toml --all-targets -- -D warnings

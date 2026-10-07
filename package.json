@@ -15,7 +15,7 @@
     "test": "turbo run test",
     "test:contracts": "cargo test --manifest-path contracts/Cargo.toml",
     "lint:contracts": "cargo clippy --manifest-path contracts/Cargo.toml --all-targets -- -D warnings",
-    "fmt:contracts": "cargo fmt --manifest-path contracts/Cargo.toml -- --check",
+    "fmt:contracts": "cargo fmt --manifest-path contracts/Cargo.toml --all -- --check",
     "node:local": "docker compose up -d",
     "node:stop": "docker compose down",
     "format:check": "prettier --check .",

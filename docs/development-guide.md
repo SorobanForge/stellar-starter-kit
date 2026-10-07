@@ -107,10 +107,10 @@ Run standard unit tests, formatting checks, and clippy lints inside the `contrac
 cargo test --manifest-path contracts/Cargo.toml
 
 # Check code formatting
-cargo fmt --manifest-path contracts/Cargo.toml -- --check
+cargo fmt --manifest-path contracts/Cargo.toml --all -- --check
 
 # Format code automatically
-cargo fmt --manifest-path contracts/Cargo.toml
+cargo fmt --manifest-path contracts/Cargo.toml --all
 
 # Run Clippy lints (also available as `pnpm lint:contracts`)
 cargo clippy --manifest-path contracts/Cargo.toml --all-targets -- -D warnings

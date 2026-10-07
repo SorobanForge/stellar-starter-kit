@@ -144,7 +144,7 @@ cargo test --manifest-path contracts/Cargo.toml
 
 # Lint and format
 cargo clippy --manifest-path contracts/Cargo.toml --all-targets -- -D warnings
-cargo fmt --manifest-path contracts/Cargo.toml -- --check
+cargo fmt --manifest-path contracts/Cargo.toml --all -- --check
 
 # Compile to optimized WASM and deploy to Testnet
 pnpm build:contracts
