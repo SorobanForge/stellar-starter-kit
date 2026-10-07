@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-We actively support and patch security issues in the following versions of `stellar-starter-kit`:
+We actively support and patch security issues in the following versions of Stellar Streams:
 
 | Version | Supported          |
 | ------- | ------------------ |

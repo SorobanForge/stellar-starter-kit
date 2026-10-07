@@ -49,7 +49,7 @@ if (Test-Path $DeploymentsFile) {
 }
 
 # Contracts to deploy
-$Contracts = @("counter")
+$Contracts = @("stream", "splits", "escrow")
 
 foreach ($Contract in $Contracts) {
     $WasmPath = Join-Path $OptimizedDir "$($Contract).optimized.wasm"

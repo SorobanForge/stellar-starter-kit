@@ -1,99 +1,98 @@
-# Architecture Specification
+# Architecture
 
-This document details the architectural design and structural choices for `stellar-starter-kit`.
+How the Stellar Streams protocol is put together.
 
 ---
 
-## Monorepo Architecture
+## Overview
 
-We structure this codebase as a monorepo using **pnpm workspaces** and **Turborepo** to ensure high modularity, shared configuration, rapid development cycles, and cached builds.
+Stellar Streams is a pnpm + Turborepo monorepo containing Soroban smart contracts, a typed
+TypeScript SDK, shared utilities, and a Next.js dashboard.
 
 ```mermaid
 graph TD
-    subgraph Apps
-        WebApp[apps/web - Next.js 15 Dapp]
-    end
+    Web["apps/web — Next.js 15 dashboard"]
+    SDK["packages/sdk — StreamsClient"]
+    Hooks["packages/hooks — React hooks"]
+    Types["packages/types — domain types"]
+    Utils["packages/utils — vesting & stroop math"]
+    Wallets["packages/wallets — multi-wallet provider"]
+    RPC["Soroban RPC"]
+    Stream["contracts/stream"]
+    Splits["contracts/splits"]
+    Escrow["contracts/escrow"]
 
-    subgraph Packages
-        UI[packages/ui - Shared Component Library]
-        Wallets[packages/wallets - Wallet Connection Hooks]
-        Contracts[packages/contracts - Soroban Client Helpers]
-        TSConfig[packages/tsconfig - Shared TS configs]
-        ESLintConfig[packages/eslint-config - Shared ESLint configs]
-    end
-
-    subgraph Examples
-        BasicPayment[examples/basic-payment - Payment Dapp]
-        SorobanToken[examples/soroban-token - Token Dapp]
-    end
-
-    WebApp --> UI
-    WebApp --> Wallets
-    WebApp --> Contracts
-
-    BasicPayment --> Wallets
-    BasicPayment --> UI
-    SorobanToken --> Wallets
-    SorobanToken --> Contracts
-    SorobanToken --> UI
-
-    UI --> TSConfig
-    Wallets --> TSConfig
-    Contracts --> TSConfig
-    WebApp --> TSConfig
+    Web --> SDK
+    Web --> Hooks
+    Web --> Wallets
+    Web --> Utils
+    SDK --> Types
+    SDK --> RPC
+    Hooks --> SDK
+    RPC --> Stream
+    RPC --> Splits
+    RPC --> Escrow
 ```
 
 ---
 
-## Folder Responsibilities
+## On-chain layer (`contracts/`)
 
-### `/apps`
+Rust workspaces built with [soroban-sdk](https://crates.io/crates/soroban-sdk) `27.x`.
 
-Contains deployable applications.
+| Crate    | Responsibility                                                                                          |
+| :------- | :------------------------------------------------------------------------------------------------------ |
+| `stream` | **Flagship.** Linear vesting streams with cliffs, cancellation, optional protocol fee, and TTL bumping. |
+| `splits` | Reusable proportional payment splits with duplicate detection and dust handling.                        |
+| `escrow` | Arbiter-based escrow with deadline-driven refunds.                                                      |
 
-- **`apps/web`**: The main entry point. A Next.js 15 app showcasing wallet connections, contract interactions, transaction building, and the component catalog.
+Design rules:
 
-### `/contracts`
+1. **Auth first.** Every state-changing entry point calls `require_auth()` on the actor it needs.
+2. **Validate before mutating.** Amounts, time ranges, and cliffs are checked up front.
+3. **Bump TTLs.** Persistent and instance entries are extended on every write so state never
+   unexpectedly expires.
+4. **Emit events.** Each lifecycle transition publishes a topic-tagged event for indexers.
+5. **No panics for user error.** Recoverable problems return a typed `#[contracterror]`.
 
-Contains the Soroban Rust smart contract workspace.
-
-- **`contracts/counter`**: Flagship production-grade reference implementation containing modular business logic, instance storage TTL bumps, customized error structures, events emission, and comprehensive testing blocks.
-- **`contracts/escrow`**: Flagship secure escrow implementation supporting multi-party agreement lifecycles (create, fund, release, refund, cancel), status transitions, deadline enforcement, event publishing, and thorough test cases.
-
-### `/packages`
-
-Contains internal, highly reusable library packages.
-
-- **`packages/wallets`**: Aggregates Stellar wallets (Freighter, Albedo, Rabet, Hana) under a unified React Context and React Hook.
-- **`packages/contracts`**: Contains generated Soroban TypeScript bindings, helper hooks, and client wrappers to interact with deployed WASM smart contracts.
-- **`packages/ui`**: Component library containing custom tailwind-styled shadcn/ui components customized for Stellar interactions (wallet buttons, transaction status indicators).
-- **`packages/tsconfig`**: Houses base TypeScript configuration files inherited by other packages and apps.
-- **`packages/eslint-config`**: Houses base ESLint configurations to maintain code standards across workspaces.
-
-### `/examples`
-
-Independent starter templates demonstrating focused use cases.
-
-- **`examples/basic-payment`**: Minimal demo showing how to send XLM or custom assets between accounts.
-- **`examples/soroban-token`**: Full example demonstrating how to upload a custom token, mint, transfer, and read contract state.
-
-### `/docs`
-
-Developer documentation, deployment guides, security policies, and architectural RFCs.
-
-### `/public`
-
-Global assets, images, and public configuration templates.
-
-### `/scripts`
-
-Utility scripts for local environment setups, contract generation, and automated tasks.
+Vesting math is intentionally simple and integer-only to avoid rounding surprises; the exact
+formula lives in `contracts/stream/src/lib.rs` and is mirrored in TypeScript.
 
 ---
 
-## Key Design Principles
+## Client layer (`packages/`)
 
-1.  **Strict Modularity**: Wallet APIs should never depend on UI styling. Application views should interact with hooks and abstract clients.
-2.  **No Placeholders**: We build actual, working interfaces, rather than mocks, ensuring a developer can deploy directly to Mainnet or Testnet immediately.
-3.  **Fast Iteration Cycle**: Turborepo manages parallel builds and only rebuilds workspace layers that have active changes, speeding up local developer cycles and CI/CD pipelines.
-4.  **Optimal User Experience**: Every page supports dark mode, loads fast, is fully typed, and provides clear visual cues for transaction loading and ledger synchronization.
+| Package     | Responsibility                                                             |
+| :---------- | :------------------------------------------------------------------------- |
+| `sdk`       | `StreamsClient` — simulates reads and prepares/signs/submits/polls writes. |
+| `types`     | `Stream`, `StreamConfig`, `CreateStreamParams`, status derivation.         |
+| `utils`     | BigInt stroop formatting/parsing, duration formatting, vesting math.       |
+| `hooks`     | `useStream` — loads a stream + claimable balance with optional polling.    |
+| `wallets`   | Unified React context over Freighter, Albedo, Rabet, and Hana.             |
+| `ui`        | Shared UI primitives and the Tailwind class helper.                        |
+| `contracts` | Generated Soroban TypeScript bindings plus network constants.              |
+
+The SDK never assumes a wallet is present: read methods only need a `publicKey` for simulation,
+while write methods require an injected `signTransaction`.
+
+---
+
+## Application layer (`apps/web`)
+
+A Next.js 15 App Router application:
+
+- `/` — product overview.
+- `/streams` — create, inspect, withdraw from, and cancel streams.
+- `/escrow` — interact with the escrow primitive.
+- `/docs` — setup and reference documentation.
+
+---
+
+## Tooling
+
+- **Turborepo** orchestrates `build`, `lint`, `typecheck`, and `test` across the workspace, with
+  `typecheck` and `build` depending on upstream builds.
+- **Changesets** manages versioning and changelogs.
+- **Husky + commitlint + lint-staged** enforce Conventional Commits and formatting on commit.
+- **GitHub Actions** runs four jobs: JS lint/format, typecheck, unit tests, and the production
+  build, plus a dedicated `contracts` job (`cargo fmt`, `clippy -D warnings`, `cargo test`).

@@ -41,7 +41,7 @@ if [ ! -f "$DeploymentsFile" ]; then
     echo "{}" > "$DeploymentsFile"
 fi
 
-Contracts=("counter" "escrow")
+Contracts=("stream" "splits" "escrow")
 
 for Contract in "${Contracts[@]}"; do
     WasmPath="$OptimizedDir/$Contract.optimized.wasm"

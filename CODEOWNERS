@@ -5,5 +5,5 @@
 /.github/workflows/   @SorobanForge
 /apps/                @SorobanForge
 /packages/            @SorobanForge
-/examples/            @SorobanForge
+/contracts/           @SorobanForge
 /docs/                @SorobanForge
