@@ -16,7 +16,7 @@ if (-not (Test-Path $ReleaseDir)) {
 }
 
 # Add more contracts to this array as we implement them
-$Contracts = @("counter")
+$Contracts = @("stream", "splits", "escrow")
 
 foreach ($Contract in $Contracts) {
     $WasmName = "$Contract.wasm"

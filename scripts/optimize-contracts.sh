@@ -15,7 +15,7 @@ if [ ! -d "$RELEASE_DIR" ]; then
     exit 1
 fi
 
-Contracts=("counter" "escrow")
+Contracts=("stream" "splits" "escrow")
 
 for Contract in "${Contracts[@]}"; do
     InputWasm="$RELEASE_DIR/$Contract.wasm"

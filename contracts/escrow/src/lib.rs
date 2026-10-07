@@ -93,10 +93,8 @@ impl EscrowContract {
         env.storage().persistent().extend_ttl(&key, BUMP_THRESHOLD, BUMP_LIMIT);
 
         // Emit creation event
-        env.events().publish(
-            (symbol_short!("escrow"), symbol_short!("created"), id),
-            (payer, amount),
-        );
+        env.events()
+            .publish((symbol_short!("escrow"), symbol_short!("created"), id), (payer, amount));
 
         Ok(())
     }
@@ -104,11 +102,8 @@ impl EscrowContract {
     /// Fund the escrow by transferring the specified amount of tokens from payer to this contract.
     pub fn fund_escrow(env: Env, id: u64) -> Result<(), EscrowError> {
         let key = DataKey::Escrow(id);
-        let mut escrow: Escrow = env
-            .storage()
-            .persistent()
-            .get(&key)
-            .ok_or(EscrowError::EscrowNotFound)?;
+        let mut escrow: Escrow =
+            env.storage().persistent().get(&key).ok_or(EscrowError::EscrowNotFound)?;
 
         if escrow.status != EscrowStatus::Created {
             return Err(EscrowError::InvalidStateTransition);
@@ -125,10 +120,7 @@ impl EscrowContract {
         env.storage().persistent().extend_ttl(&key, BUMP_THRESHOLD, BUMP_LIMIT);
 
         // Emit funding event
-        env.events().publish(
-            (symbol_short!("escrow"), symbol_short!("funded"), id),
-            escrow.amount,
-        );
+        env.events().publish((symbol_short!("escrow"), symbol_short!("funded"), id), escrow.amount);
 
         Ok(())
     }
@@ -136,11 +128,8 @@ impl EscrowContract {
     /// Release funds to the payee. Authorized by either the payer or the arbiter.
     pub fn release_escrow(env: Env, id: u64, caller: Address) -> Result<(), EscrowError> {
         let key = DataKey::Escrow(id);
-        let mut escrow: Escrow = env
-            .storage()
-            .persistent()
-            .get(&key)
-            .ok_or(EscrowError::EscrowNotFound)?;
+        let mut escrow: Escrow =
+            env.storage().persistent().get(&key).ok_or(EscrowError::EscrowNotFound)?;
 
         if escrow.status != EscrowStatus::Funded {
             if escrow.status == EscrowStatus::Created {
@@ -175,11 +164,8 @@ impl EscrowContract {
     /// Refund funds to the payer. Authorized by either the payee or the arbiter.
     pub fn refund_escrow(env: Env, id: u64, caller: Address) -> Result<(), EscrowError> {
         let key = DataKey::Escrow(id);
-        let mut escrow: Escrow = env
-            .storage()
-            .persistent()
-            .get(&key)
-            .ok_or(EscrowError::EscrowNotFound)?;
+        let mut escrow: Escrow =
+            env.storage().persistent().get(&key).ok_or(EscrowError::EscrowNotFound)?;
 
         if escrow.status != EscrowStatus::Funded {
             if escrow.status == EscrowStatus::Created {
@@ -215,11 +201,8 @@ impl EscrowContract {
     /// or after the deadline has passed if funded (Funded).
     pub fn cancel_escrow(env: Env, id: u64, caller: Address) -> Result<(), EscrowError> {
         let key = DataKey::Escrow(id);
-        let mut escrow: Escrow = env
-            .storage()
-            .persistent()
-            .get(&key)
-            .ok_or(EscrowError::EscrowNotFound)?;
+        let mut escrow: Escrow =
+            env.storage().persistent().get(&key).ok_or(EscrowError::EscrowNotFound)?;
 
         caller.require_auth();
         if caller != escrow.payer {
@@ -239,7 +222,11 @@ impl EscrowContract {
 
                 // Transfer funds back to payer
                 let token_client = token::Client::new(&env, &escrow.token);
-                token_client.transfer(&env.current_contract_address(), &escrow.payer, &escrow.amount);
+                token_client.transfer(
+                    &env.current_contract_address(),
+                    &escrow.payer,
+                    &escrow.amount,
+                );
 
                 escrow.status = EscrowStatus::Cancelled;
             }
