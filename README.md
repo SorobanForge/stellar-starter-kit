@@ -118,12 +118,33 @@ vested(now) = 0                                  if now < start or now < cliff
 
 ---
 
+## The `splits` contract
+
+The `splits` contract turns one payment into many. A split is an immutable, reusable
+configuration of recipients with integer share weights; anyone may pay into it and the funds are
+distributed on the spot.
+
+| Function                                    | Description                                                                           |
+| :------------------------------------------ | :------------------------------------------------------------------------------------ |
+| `create_split(creator, recipients, shares)` | Register a split. Returns the split id; `shares[i]` is the weight of `recipients[i]`. |
+| `distribute(split_id, from, token, amount)` | Pull `amount` of `token` from `from` and pay every recipient proportionally.          |
+| `get_split(id)` / `next_split_id()`         | Read helpers.                                                                         |
+
+Validation is enforced on-chain: the recipient list cannot be empty, `recipients` and `shares`
+must be the same length, every share must be non-zero, and duplicate recipients are rejected.
+`distribute` pays each recipient `amount * share / total_shares` with integer math and assigns the
+rounding remainder to the final recipient, so no dust is stranded. Each call requires the payer's
+signature and emits a `splits`-tagged event for indexers.
+See [`contracts/splits/src/lib.rs`](contracts/splits/src/lib.rs).
+
+---
+
 ## Quick start
 
 ### Prerequisites
 
 - Node.js ≥ 18 and pnpm ≥ 8
-- Rust toolchain with the `wasm32-unknown-unknown` target (for contracts)
+- Rust toolchain with the `wasm32v1-none` target (for contracts)
 - Docker (optional, for a local Stellar node)
 
 ```bash
@@ -208,6 +229,7 @@ Copy `.env.example` to `.env.local` and set:
 | `NEXT_PUBLIC_SOROBAN_RPC_URL`            | Soroban RPC endpoint.                               |
 | `NEXT_PUBLIC_STELLAR_NETWORK_PASSPHRASE` | Network passphrase.                                 |
 | `NEXT_PUBLIC_STREAM_CONTRACT_ID`         | Deployed `stream` contract id.                      |
+| `NEXT_PUBLIC_SPLITS_CONTRACT_ID`         | Deployed `splits` contract id.                      |
 | `NEXT_PUBLIC_TOKEN_CONTRACT_ID`          | Token contract to stream (defaults to testnet XLM). |
 
 ---
