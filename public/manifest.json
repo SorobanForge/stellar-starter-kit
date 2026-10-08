@@ -1,6 +1,6 @@
 {
-  "short_name": "StellarStarter",
-  "name": "Stellar Starter Kit Dapp",
+  "short_name": "StellarStreams",
+  "name": "Stellar Streams — payment streaming on Stellar",
   "icons": [],
   "start_url": ".",
   "display": "standalone",

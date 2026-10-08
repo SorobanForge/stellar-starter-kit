@@ -1,6 +1,6 @@
 # Local Development Guide
 
-Welcome to the `stellar-starter-kit` developer documentation! This guide explains how to configure your local machine for developing Stellar and Soroban smart contract applications.
+Welcome to the Stellar Streams developer documentation! This guide explains how to configure your local machine for developing and deploying the protocol's Soroban smart contracts.
 
 ---
 
@@ -81,16 +81,20 @@ pnpm optimize
 Deploy the optimized contracts to Stellar Testnet and generate strongly-typed TypeScript client bindings automatically inside `packages/contracts/src/generated`:
 
 ```bash
-pnpm deploy:counter
+pnpm deploy:stream
+pnpm deploy:splits
 pnpm deploy:escrow
 ```
+
+After deploying, copy the printed contract ids into `.env.local`
+(`NEXT_PUBLIC_STREAM_CONTRACT_ID`, `NEXT_PUBLIC_SPLITS_CONTRACT_ID`) so the dashboard can reach them.
 
 ### Invoke Contract via CLI
 
 Demonstrate and verify contract execution on Stellar Testnet:
 
 ```bash
-pnpm invoke:counter
+pnpm invoke:stream
 pnpm invoke:escrow
 ```
 
@@ -99,15 +103,18 @@ pnpm invoke:escrow
 Run standard unit tests, formatting checks, and clippy lints inside the `contracts` workspace:
 
 ```bash
-# Run unit tests
+# Run unit tests (also available as `pnpm test:contracts`)
 cargo test --manifest-path contracts/Cargo.toml
 
 # Check code formatting
-cargo fmt --manifest-path contracts/Cargo.toml -- --check
+cargo fmt --manifest-path contracts/Cargo.toml --all -- --check
 
 # Format code automatically
-cargo fmt --manifest-path contracts/Cargo.toml
+cargo fmt --manifest-path contracts/Cargo.toml --all
 
-# Run Clippy lints
+# Run Clippy lints (also available as `pnpm lint:contracts`)
 cargo clippy --manifest-path contracts/Cargo.toml --all-targets -- -D warnings
+
+# Build optimized WASM for deployment
+cargo build --manifest-path contracts/Cargo.toml --target wasm32v1-none --release
 ```

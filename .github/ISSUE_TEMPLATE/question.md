@@ -1,6 +1,6 @@
 ---
 name: '❓ Question'
-about: Ask a question about using, configuring, or contributing to stellar-starter-kit
+about: Ask a question about using, configuring, or contributing to Stellar Streams
 title: 'question: [Short description of question]'
 labels: ['question']
 assignees: []
@@ -8,7 +8,7 @@ assignees: []
 
 ## Your Question
 
-What would you like to know or clarify about stellar-starter-kit?
+What would you like to know or clarify about Stellar Streams?
 
 ## Context
 
