@@ -12,3 +12,7 @@ pnpm-lock.yaml
 **/generated/**
 **/test_snapshots/**
 
+# Third-party patches
+contracts/patches/
+
+

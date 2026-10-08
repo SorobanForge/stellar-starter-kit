@@ -213,7 +213,8 @@ describe('WalletProvider', () => {
 
     expect(freighter.signTransaction).toHaveBeenCalledWith('mock-xdr', {
       network: 'TESTNET',
-      networkPassphrase: 'Test Horizon Network ; Public Sep 2015',
+      networkPassphrase: 'Test SDF Network ; September 2015',
+      accountToSign: 'GB_FREIGHTER',
     });
   });
 });

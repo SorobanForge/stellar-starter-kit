@@ -16,14 +16,14 @@ const DOCS_SECTIONS = {
       <div>
         <h1 className="mb-6 text-3xl font-extrabold text-white">Introduction</h1>
         <p className="text-slate-350 mb-4 leading-relaxed">
-          Welcome to the <strong>Stellar Starter Kit</strong>! This project is the ultimate flagship
-          template for scaffolding modern, production-grade Stellar and Soroban decentralized
-          applications.
+          Welcome to <strong>Stellar Streams</strong> — an open-source protocol for continuous
+          payment streams, linear vesting with cliffs, and proportional payment splits on Stellar
+          and Soroban.
         </p>
         <p className="text-slate-350 mb-4 leading-relaxed">
-          Whether you are building simple payment channels or complex multi-signature DAO governors,
-          this monorepo layout provides the developer tools, workspace isolations, type check gates,
-          and CI/CD pipelines required to maintain long-term code quality.
+          The protocol is implemented as Soroban smart contracts written in Rust, with a typed
+          TypeScript SDK, shared vesting math, and an open dashboard for creating and managing
+          streams.
         </p>
         <div className="glass my-8 rounded-2xl border border-slate-900 p-6">
           <h3 className="mb-2 text-base font-bold text-white">Key Philosophy</h3>
@@ -60,7 +60,8 @@ const DOCS_SECTIONS = {
         <pre className="mb-6 overflow-x-auto rounded-xl border border-slate-900 bg-[#08080f] p-5 font-mono text-xs leading-relaxed text-slate-300">
           {`git clone https://github.com/SorobanForge/stellar-starter-kit.git
 cd stellar-starter-kit
-pnpm install`}
+pnpm install
+pnpm build`}
         </pre>
 
         <h3 className="mb-3 text-lg font-bold text-white">2. Run Local Horizon Node</h3>
@@ -109,7 +110,7 @@ pnpm install`}
           <div className="rounded-xl border border-slate-900 bg-slate-950/20 p-5">
             <h4 className="text-sm font-bold text-white">packages/wallets</h4>
             <p className="mt-1 text-xs text-slate-400">
-              Unified React providers and hooks wrapping Freighter, Albedo, Hana, and Rabe wallets.
+              Unified React providers and hooks wrapping Freighter, Albedo, Hana, and Rabet wallets.
             </p>
           </div>
           <div className="rounded-xl border border-slate-900 bg-slate-950/20 p-5">

@@ -9,7 +9,7 @@ if (-not (Test-Path $StellarCli)) {
 
 # 1. Setup Network
 Write-Host "Configuring Stellar network: testnet..."
-& $StellarCli network add --rpc-url https://soroban-testnet.stellar.org --passphrase "Test Horizon Network ; Public Sep 2015" testnet --global 2>$null
+& $StellarCli network add --rpc-url https://soroban-testnet.stellar.org --passphrase "Test SDF Network ; September 2015" testnet --global 2>$null
 
 # 2. Setup Deployer Key
 $AccountName = "deployer"
@@ -34,7 +34,7 @@ if (-not $HasKey) {
 }
 
 # 3. Deploy and Generate Bindings
-$OptimizedDir = Join-Path $WorkspaceRoot "contracts\target\wasm32-unknown-unknown\release"
+$OptimizedDir = Join-Path $WorkspaceRoot "contracts\target\wasm32v1-none\release"
 $DeploymentsFile = Join-Path $WorkspaceRoot "apps/web/src/generated/deployments.json"
 
 # Ensure output folder for deployments exists
@@ -49,7 +49,7 @@ if (Test-Path $DeploymentsFile) {
 }
 
 # Contracts to deploy
-$Contracts = @("counter")
+$Contracts = @("stream", "splits", "escrow")
 
 foreach ($Contract in $Contracts) {
     $WasmPath = Join-Path $OptimizedDir "$($Contract).optimized.wasm"
@@ -94,3 +94,33 @@ foreach ($Contract in $Contracts) {
 $DeploymentsJson = $Deployments | ConvertTo-Json
 $DeploymentsJson | Out-File $DeploymentsFile -Encoding utf8
 Write-Host "Deployments saved to: $DeploymentsFile"
+
+# 4. Initialize the stream contract (admin, treasury, protocol fee). One-shot.
+$StreamId = $Deployments["stream"]
+$SplitsId = $Deployments["splits"]
+$EscrowId = $Deployments["escrow"]
+$AdminAddress = (& $StellarCli keys address $AccountName).Trim()
+$FeeBps = if ($env:STREAM_FEE_BPS) { $env:STREAM_FEE_BPS } else { "0" }
+
+if ($StreamId) {
+    Write-Host "Initializing stream contract (admin=$AdminAddress, treasury=$AdminAddress, fee_bps=$FeeBps)..."
+    & $StellarCli contract invoke --id $StreamId --source-account $AccountName --network testnet -- initialize --admin $AdminAddress --treasury $AdminAddress --fee_bps $FeeBps
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Warning: initialize returned non-zero (contract likely already initialized)."
+    }
+}
+
+Write-Host ""
+Write-Host "=================================================================="
+Write-Host " Deployment complete - Stellar Testnet"
+Write-Host "=================================================================="
+Write-Host "  stream: $StreamId"
+Write-Host "  splits: $SplitsId"
+Write-Host "  escrow: $EscrowId"
+Write-Host ""
+Write-Host " Copy into apps/web/.env.local:"
+Write-Host ""
+Write-Host "NEXT_PUBLIC_STREAM_CONTRACT_ID=$StreamId"
+Write-Host "NEXT_PUBLIC_SPLITS_CONTRACT_ID=$SplitsId"
+Write-Host "NEXT_PUBLIC_ESCROW_CONTRACT_ID=$EscrowId"
+Write-Host "=================================================================="

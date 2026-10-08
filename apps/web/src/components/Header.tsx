@@ -2,38 +2,39 @@
 
 import React from 'react';
 import { Github, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
 import Logo from './Logo';
 
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-900/80 bg-[#07070e]/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <div className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-500 text-white">
             <Logo size={18} />
           </div>
-          <span className="font-extrabold tracking-wider text-white">stellar-starter-kit</span>
-        </div>
+          <span className="font-extrabold tracking-wider text-white">Stellar Streams</span>
+        </Link>
 
-        <nav className="text-slate-350 hidden items-center gap-8 text-sm font-medium md:flex">
-          <a href="#features" className="transition-colors hover:text-white">
-            Features
+        <nav className="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
+          <a href="/#protocol" className="transition-colors hover:text-white">
+            Protocol
           </a>
-          <a href="#architecture" className="transition-colors hover:text-white">
-            Architecture
+          <a href="/#sdk" className="transition-colors hover:text-white">
+            SDK
           </a>
-          <a href="#code" className="transition-colors hover:text-white">
-            Developer API
-          </a>
-          <a href="#roadmap" className="transition-colors hover:text-white">
+          <a href="/#roadmap" className="transition-colors hover:text-white">
             Roadmap
           </a>
-          <a href="#faq" className="transition-colors hover:text-white">
-            FAQ
-          </a>
-          <a href="/docs" className="flex items-center gap-1 transition-colors hover:text-white">
+          <Link href="/docs" className="flex items-center gap-1 transition-colors hover:text-white">
             Docs <ExternalLink className="h-3.5 w-3.5" />
-          </a>
+          </Link>
+          <Link
+            href="/streams"
+            className="font-semibold text-cyan-400 transition-colors hover:text-cyan-300"
+          >
+            Streams App
+          </Link>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -46,12 +47,12 @@ export default function Header() {
           >
             <Github className="h-5 w-5" />
           </a>
-          <a
-            href="#code"
+          <Link
+            href="/streams"
             className="hidden h-9 items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 px-4 text-xs font-semibold text-white shadow-md shadow-purple-500/10 transition-all duration-300 hover:brightness-110 sm:inline-flex"
           >
-            Get Started
-          </a>
+            Launch App
+          </Link>
         </div>
       </div>
     </header>
