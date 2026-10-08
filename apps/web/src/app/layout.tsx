@@ -3,8 +3,9 @@ import './globals.css';
 import { WalletProvider } from '@stellar-starter-kit/wallets';
 
 export const metadata: Metadata = {
-  title: 'Stellar Starter Kit',
-  description: 'The fastest way to build modern Stellar and Soroban applications.',
+  title: 'Stellar Streams',
+  description:
+    'Open-source payment streaming, vesting, and splits protocol for Stellar and Soroban.',
 };
 
 export default function RootLayout({

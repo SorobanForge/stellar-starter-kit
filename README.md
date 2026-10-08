@@ -1,289 +1,293 @@
-# 🌌 Stellar Starter Kit
+# 🌊 Stellar Streams
 
 <div align="center">
 
-![Stellar Starter Kit Banner](public/banner.png)
+**Continuous payment streams, linear vesting, and payment splits on Stellar & Soroban.**
 
-**The fastest way to build, test, and deploy modern Stellar and Soroban applications.**
-
-[![CI Status](https://img.shields.io/github/actions/workflow/status/SorobanForge/stellar-starter-kit/ci.yml?branch=main&style=for-the-badge&logo=github&logoColor=white)](https://github.com/SorobanForge/stellar-starter-kit/actions)
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
-[![Next.js Version](https://img.shields.io/badge/Next.js-15.0-black?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-cyan.svg?style=for-the-badge&logo=git&logoColor=white)](CONTRIBUTING.md)
+[![CI](https://img.shields.io/github/actions/workflow/status/SorobanForge/stellar-starter-kit/ci.yml?branch=main&style=for-the-badge&logo=github&logoColor=white)](https://github.com/SorobanForge/stellar-starter-kit/actions)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Rust](https://img.shields.io/badge/Soroban-soroban--sdk%2027-orange?style=for-the-badge&logo=rust&logoColor=white)](contracts)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript&logoColor=white)](packages)
 
 </div>
 
 ---
 
-## 🎯 Why This Project Exists...
+## What is Stellar Streams?
 
-Scaffolding Stellar and Soroban applications historically required developers to manually orchestrate multiple disconnected tooling systems: client libraries, custom wallet adapter wrappers, smart contract bindings, environment setups, and testing frameworks.
+Stellar Streams is an open protocol for **programmable payments** on Stellar. Instead of sending a
+one-off transfer, you can:
 
-`stellar-starter-kit` resolves these friction points by providing a pre-configured, production-ready **monorepo template**. It establishes immediate compile-safe bindings between contract interfaces, React frontend states, unit tests, and multi-wallet providers, allowing developers to go from zero to a live mainnet dApp in minutes.
+- **Stream** tokens continuously to a recipient, who withdraws whatever has vested, at any time.
+- **Vest** tokens linearly with an optional cliff — for salaries, grants, and token unlocks.
+- **Split** a payment into proportional shares for multiple recipients in a single transaction.
+- **Escrow** funds with an arbiter and deadline-based refunds (payment primitive module).
 
----
+Everything runs on [Soroban](https://soroban.stellar.org) smart contracts written in Rust, with a
+typed TypeScript SDK and an open web dashboard.
 
-## ⚖️ Comparison with Alternatives
-
-| Feature / Tool             |         `stellar-starter-kit`         | Manual SDK Scaffolding | Standard React templates |
-| :------------------------- | :-----------------------------------: | :--------------------: | :----------------------: |
-| **Monorepo Ready**         |        **Yes** (pnpm + Turbo)         |           No           |            No            |
-| **Pre-configured Wallets** | **Yes** (Freighter/Albedo/Rabet/Hana) |           No           |            No            |
-| **Soroban Bindings Sync**  |                **Yes**                |         Manual         |            No            |
-| **Conventional Commits**   |     **Yes** (Commitlint + Husky)      |           No           |            No            |
-| **Automated Releases**     |         **Yes** (Changesets)          |           No           |            No            |
-| **Shared Styling System**  |      **Yes** (Cosmic Theme CSS)       |           No           |            No            |
+> **Project status:** pre-1.0. The contracts are implemented, unit-tested, and build clean under
+> `clippy` / `rustfmt`. They have **not** been audited or deployed to Mainnet. See the
+> [Roadmap](ROADMAP.md) for what's next.
 
 ---
 
-## 📐 Architecture & Dependency Diagrams
+## Use cases
 
-### Project Architecture Flow
+| Use case              | How Stellar Streams helps                                        |
+| :-------------------- | :--------------------------------------------------------------- |
+| **Payroll**           | Stream salary per-second; employees withdraw whenever they like. |
+| **Token vesting**     | Linear vesting with a cliff for team/investor allocations.       |
+| **Grants & bounties** | Milestone cliffs release funds as work completes.                |
+| **Revenue sharing**   | Route a payment to many contributors via a single split.         |
+| **OTC / services**    | Optional escrow with an arbiter and deadline refunds.            |
+
+---
+
+## Repository layout
+
+```
+stellar/
+├── contracts/                # Soroban (Rust) smart contracts
+│   ├── stream/               #   ⭐ continuous streaming + linear vesting + protocol fee
+│   ├── splits/               #   proportional payment splits
+│   └── escrow/               #   arbiter-based escrow primitive
+├── packages/
+│   ├── sdk/                  # @stellar-starter-kit/sdk     — typed StreamsClient
+│   ├── types/                # @stellar-starter-kit/types   — shared domain types
+│   ├── utils/                # @stellar-starter-kit/utils   — precise stroop & vesting math
+│   ├── hooks/                # @stellar-starter-kit/hooks   — React hooks (useStream)
+│   ├── wallets/              # @stellar-starter-kit/wallets — Freighter/Albedo/Rabet/Hana
+│   ├── contracts/            # generated Soroban TS bindings
+│   └── ui/                   # shared UI primitives
+├── apps/
+│   └── web/                  # Next.js dashboard (/streams, /escrow, /docs)
+├── scripts/                  # cross-platform build/deploy/invoke scripts
+└── docs/                     # development guide
+```
+
+---
+
+## Architecture
 
 ```mermaid
 graph TD
-    subgraph apps ["apps/"]
-        Web[web - Next.js 15 App Portal]
-    end
-
-    subgraph packages ["packages/"]
-        SDK[sdk - High-level Orchestration]
-        Core[core - Stellar Horizon wraps]
-        Hooks[hooks - React state & wallet balance]
-        Wallets[wallets - Multi-wallet Context]
-        UI[ui - Component Library]
-        Contracts[contracts - Typed bindings]
-        Testing[testing - Mock environments]
-        Types[types - TS interfaces]
-        Utils[utils - Math/format helpers]
-        Config[config - Shared project settings]
-    end
-
-    Web --> SDK
-    Web --> Hooks
-    Web --> Wallets
-    Web --> UI
-    SDK --> Core
-    Hooks --> Wallets
-    Testing --> Types
-    Utils --> Types
-    Core --> Config
+    Web["apps/web (Next.js 15)"] --> SDK["packages/sdk (StreamsClient)"]
+    Web --> Hooks["packages/hooks (useStream)"]
+    Web --> Wallets["packages/wallets"]
+    SDK --> Types["packages/types"]
+    Hooks --> SDK
+    Web --> Utils["packages/utils"]
+    SDK --> RPC["Soroban RPC"]
+    RPC --> Stream["contracts/stream"]
+    RPC --> Splits["contracts/splits"]
+    RPC --> Escrow["contracts/escrow"]
 ```
 
-### Monorepo Workspaces Dependency Graph
+- **Reads** simulate against Soroban RPC. **Writes** are prepared, signed by the connected wallet,
+  submitted, and polled to completion — all handled by `StreamsClient`.
+- Vesting math is implemented **once in Rust** and **mirrored in TypeScript**
+  (`packages/utils`), with tests on both sides.
 
-```mermaid
-flowchart LR
-    web["@stellar-starter-kit/web"] --> sdk["@stellar-starter-kit/sdk"]
-    web --> hooks["@stellar-starter-kit/hooks"]
-    web --> ui["@stellar-starter-kit/ui"]
-    web --> wallets["@stellar-starter-kit/wallets"]
-    sdk --> core["@stellar-starter-kit/core"]
-    hooks --> wallets
-    testing["@stellar-starter-kit/testing"] --> types["@stellar-starter-kit/types"]
-    utils["@stellar-starter-kit/utils"] --> types
+---
+
+## The `stream` contract
+
+The flagship contract locks tokens up front and releases them linearly.
+
+| Function                                                             | Description                                                               |
+| :------------------------------------------------------------------- | :------------------------------------------------------------------------ |
+| `initialize(admin, treasury, fee_bps)`                               | Configure the optional protocol fee (cap 10%).                            |
+| `create_stream(sender, recipient, token, amount, start, end, cliff)` | Lock tokens and open a stream. Returns the stream id.                     |
+| `withdraw(id)`                                                       | Recipient claims the vested, unclaimed balance.                           |
+| `cancel(id)`                                                         | Sender cancels; unvested funds are refunded, vested funds stay claimable. |
+| `claimable(id)` / `vested(id)`                                       | View helpers.                                                             |
+| `get_stream(id)` / `get_config()` / `next_stream_id()`               | Read helpers.                                                             |
+
+Safety properties enforced on-chain: `end > start`, `start ≤ cliff ≤ end`, `amount > 0`,
+authenticated sender/recipient, and idempotent cancel. See
+[`contracts/stream/src/lib.rs`](contracts/stream/src/lib.rs).
+
+### Vesting math
+
+```
+vested(now) = 0                                  if now < start or now < cliff
+            = total                              if now ≥ end
+            = total * (now - start) / (end-start) otherwise
 ```
 
 ---
 
-## 📂 Folder Structure
+## The `splits` contract
 
-```
-stellar-starter-kit/
-├── .changeset/              # Version release configurations (Changesets)
-├── .github/                 # GitHub pipelines and templates
-│   ├── workflows/           # CI, PR and Release Actions
-│   └── ISSUE_TEMPLATE/      # Custom GitHub issues templates
-├── apps/                    # Next.js applications
-│   └── web/                 # Next.js 15 dashboard portal
-├── packages/                # Shared workspace modular libraries
-│   ├── cli/                 # Command line tools for code generation
-│   ├── config/              # Shared constants & build configurations
-│   ├── contracts/           # Smart contract configurations
-│   ├── core/                # Raw Horizon & RPC SDK client wraps
-│   ├── hooks/               # Custom React hooks (wallet balance, etc.)
-│   ├── sdk/                 # Standard Client SDK API endpoint exports
-│   ├── testing/             # Test mocking libraries & simulators
-│   ├── types/               # Common TypeScript interface types
-│   ├── ui/                  # Components library (Shadcn + Framer Motion)
-│   ├── utils/               # Math, unit converters and address formatters
-│   └── wallets/             # Unified wallet connectivity context
-└── examples/                # Quickstart tutorials
-    └── basic-payment/       # CLI Stellar XLM Payment builder demo
-```
+The `splits` contract turns one payment into many. A split is an immutable, reusable
+configuration of recipients with integer share weights; anyone may pay into it and the funds are
+distributed on the spot.
+
+| Function                                    | Description                                                                           |
+| :------------------------------------------ | :------------------------------------------------------------------------------------ |
+| `create_split(creator, recipients, shares)` | Register a split. Returns the split id; `shares[i]` is the weight of `recipients[i]`. |
+| `distribute(split_id, from, token, amount)` | Pull `amount` of `token` from `from` and pay every recipient proportionally.          |
+| `get_split(id)` / `next_split_id()`         | Read helpers.                                                                         |
+
+Validation is enforced on-chain: the recipient list cannot be empty, `recipients` and `shares`
+must be the same length, every share must be non-zero, and duplicate recipients are rejected.
+`distribute` pays each recipient `amount * share / total_shares` with integer math and assigns the
+rounding remainder to the final recipient, so no dust is stranded. Each call requires the payer's
+signature and emits a `splits`-tagged event for indexers.
+See [`contracts/splits/src/lib.rs`](contracts/splits/src/lib.rs).
 
 ---
 
-## 🖼️ Application Showcase
+## Quick start
 
-### 1. Main Dashboard
+### Prerequisites
 
-<div align="center">
-  <img src="public/dashboard.png" alt="Cosmic Dashboard Showcase" width="85%" style="border-radius: 12px; border: 1px solid #1e293b;"/>
-  <p><em>Cosmic Dapp Interface Dashboard Preview</em></p>
-</div>
-
-### 2. Counter Smart Contract Dashboard
-
-<div align="center">
-  <img src="public/counter.png" alt="Counter Smart Contract Interface" width="85%" style="border-radius: 12px; border: 1px solid #1e293b;"/>
-  <p><em>Interact with Soroban smart contracts directly from the UI with real-time transaction logs and state synchronization.</em></p>
-</div>
-
----
-
-## 🚀 Quick Start
-
-### 1. Installation
-
-Clone the repository and install dependencies using pnpm:
+- Node.js ≥ 18 and pnpm ≥ 8
+- Rust toolchain with the `wasm32v1-none` target (for contracts)
+- Docker (optional, for a local Stellar node)
 
 ```bash
-git clone https://github.com/SorobanForge/stellar-starter-kit.git
-cd stellar-starter-kit
 pnpm install
 ```
 
-### 2. Configure Environment Variables
-
-Copy the env template file and update configurations:
+### Run the dashboard
 
 ```bash
-cp .env.example .env.local
+pnpm run dev        # http://localhost:3000
 ```
 
-### 3. Spin Up Local Node
-
-Start a local standalone Quickstart Docker node for development:
-
-- **Using pnpm (Recommended)**:
-  ```bash
-  pnpm run node:local
-  ```
-- **Windows (PowerShell)**:
-  ```powershell
-  ./scripts/setup-local-node.ps1
-  ```
-- **macOS / Linux (Bash)**:
-  ```bash
-  ./scripts/setup-local-node.sh
-  ```
-- **Direct Docker Compose**:
-  ```bash
-  docker compose up -d
-  ```
-
-_(To stop the local node at any time, run `docker compose down`)_
-
-### 4. Start Development Server
-
-Build and run the next.js dashboard portal:
+### Build, test, and deploy contracts
 
 ```bash
-pnpm run dev
-```
+# Unit-test all Soroban contracts (29 tests)
+cargo test --manifest-path contracts/Cargo.toml
 
-Navigate to [http://localhost:3000](http://localhost:3000).
+# Lint and format
+cargo clippy --manifest-path contracts/Cargo.toml --all-targets -- -D warnings
+cargo fmt --manifest-path contracts/Cargo.toml --all -- --check
 
-### 5. Smart Contract Workflow
-
-You can compile, optimize, deploy, and invoke our flagship smart contracts on-chain using:
-
-```bash
-# Build Rust workspace contracts to WASM
+# Compile to optimized WASM and deploy to Testnet
 pnpm build:contracts
-
-# Optimize WASM binaries for minimum gas size
 pnpm optimize
-
-# Deploy contracts to Stellar Testnet and generate typed TypeScript client bindings
-pnpm deploy:counter
-pnpm deploy:escrow
-
-# Verify execution by invoking on-chain
-pnpm invoke:counter
-pnpm invoke:escrow
+pnpm deploy:stream
+pnpm deploy:splits
 ```
 
-### 🌐 Active Testnet Deployment Details
+### Local node
 
-Our reference smart contracts are actively deployed on **Stellar Testnet**:
-
-- **Counter Contract ID**: `CAOTLOBANATQD3FFNUDD7CVRSUYU4RXKIQPOMIOE67BGRH34ALKMGPW3`
-  - [Stellar.expert Explorer Link](https://stellar.expert/explorer/testnet/contract/CAOTLOBANATQD3FFNUDD7CVRSUYU4RXKIQPOMIOE67BGRH34ALKMGPW3)
-- **Escrow Contract ID**: `CBSVMERZZTAXXDG4H3VSLN26XACXXOVOITJI45XPY4PGJJ7SUSKO4AS7`
-  - [Stellar.expert Explorer Link](https://stellar.expert/explorer/testnet/contract/CBSVMERZZTAXXDG4H3VSLN26XACXXOVOITJI45XPY4PGJJ7SUSKO4AS7)
+```bash
+pnpm run node:local     # docker compose up -d (Stellar Quickstart)
+```
 
 ---
 
-## 💻 Baseline Usage Examples
-
-### Formatting address display using `@stellar-starter-kit/utils`
+## SDK usage
 
 ```typescript
-import { formatAddress, formatStroopsToXlm } from '@stellar-starter-kit/utils';
+import { StreamsClient } from '@stellar-starter-kit/sdk';
 
-const displayKey = formatAddress('GD3W5PQLX6Y6S7WLMCP6UFRT4N4IELKJD3X54V5A7LNLNEQ5Z6L4HJK3');
-// GD3W...HJK3
+const client = new StreamsClient({
+  contractId: process.env.NEXT_PUBLIC_STREAM_CONTRACT_ID!,
+  rpcUrl: 'https://soroban-testnet.stellar.org',
+  networkPassphrase: 'Test SDF Network ; September 2015',
+  publicKey: address,
+  signTransaction: (xdr) => wallet.signTransaction(xdr),
+});
 
-const balanceXlm = formatStroopsToXlm(10000000);
-// "1"
+// Open a 100 XLM stream vesting over 30 days.
+const { hash } = await client.createStream({
+  sender: address,
+  recipient,
+  token: XLM_TOKEN,
+  amount: '1000000000', // stroops
+  startTime: now,
+  endTime: now + 30 * 86_400,
+  cliffTime: now,
+});
 ```
 
-### Orchestrating operations via `@stellar-starter-kit/sdk`
+Formatting and vesting helpers live in `@stellar-starter-kit/utils`:
 
 ```typescript
-import { StellarClient } from '@stellar-starter-kit/sdk';
+import { formatStroopsToXlm, computeVestedAmount } from '@stellar-starter-kit/utils';
 
-const client = new StellarClient('https://horizon-testnet.stellar.org');
-const server = client.getServer();
+formatStroopsToXlm(123_456_789n); // "12.3456789"
+computeVestedAmount(schedule, now); // bigint
 ```
 
 ---
 
-## 📖 API Documentation Reference
+## Configuration
 
-The kit exposes these primary modular namespaces:
+Copy `.env.example` to `.env.local` and set:
 
-- **`@stellar-starter-kit/sdk`**: `StellarClient` class to retrieve Horizon Servers.
-- **`@stellar-starter-kit/utils`**: `formatAddress(address: string, chars?: number): string` and `formatStroopsToXlm(stroops: string | number | bigint): string`.
-- **`@stellar-starter-kit/hooks`**: `useStellarNetworkStatus(): boolean` tracking connection properties.
-- **`@stellar-starter-kit/testing`**: `createMockAccount(): { publicKey: string, secret: string }` for test run mocks.
-
----
-
-## ❓ FAQ
-
-#### How do I add a new smart contract client?
-
-Compile your Soroban Rust contract to WASM, then run `soroban contract bindings typescript` pointing to the WASM file, and save the resulting files inside `packages/contracts`.
-
-#### How does semantic versioning and release work?
-
-The repository uses Changesets. When making a pull request, run `pnpm changeset` to generate a markdown version patch configuration. Once merged to `main`, GitHub Actions auto-versions the packages and publishes releases.
-
-#### Does this template support mainnet operations?
-
-Yes. The network passphrase, Horizon API, and Soroban RPC URL are fully configurable in `.env.local`.
+| Variable                                 | Purpose                                             |
+| :--------------------------------------- | :-------------------------------------------------- |
+| `NEXT_PUBLIC_STELLAR_NETWORK`            | `local`, `testnet`, or `mainnet`.                   |
+| `NEXT_PUBLIC_HORIZON_URL`                | Horizon endpoint.                                   |
+| `NEXT_PUBLIC_SOROBAN_RPC_URL`            | Soroban RPC endpoint.                               |
+| `NEXT_PUBLIC_STELLAR_NETWORK_PASSPHRASE` | Network passphrase.                                 |
+| `NEXT_PUBLIC_STREAM_CONTRACT_ID`         | Deployed `stream` contract id.                      |
+| `NEXT_PUBLIC_SPLITS_CONTRACT_ID`         | Deployed `splits` contract id.                      |
+| `NEXT_PUBLIC_TOKEN_CONTRACT_ID`          | Token contract to stream (defaults to testnet XLM). |
 
 ---
 
-## 🗺️ Roadmap & Milestones
+## Maintainers
 
-- **v0.1**: Scaffold Monorepo workspace layouts, Next.js 15 dashboard, and mock test coverage.
-- **v0.2**: Integrate wallet adapter hooks (`useWallet`) for Freighter, Albedo, Hana, and Rabet.
-- **v0.5**: Smart contracts compiler templates and auto-generated bindings pipeline.
-- **v1.0**: Production audit checks, multi-network switch layouts, and sandbox testing.
+| Maintainer                                       | Role            | Contact                                                                              |
+| :----------------------------------------------- | :-------------- | :----------------------------------------------------------------------------------- |
+| [@SorobanForge](https://github.com/SorobanForge) | Lead maintainer | [GitHub](https://github.com/SorobanForge) · Telegram: _add handle before submission_ |
+
+<!-- Replace the Telegram placeholder above with the project's community handle. Telegram is the
+     convention for Stellar Wave repos; a reachable contact is part of the approval checklist. -->
+
+## Community
+
+Questions, ideas, and show-and-tell live in [GitHub Discussions](https://github.com/SorobanForge/stellar-streams/discussions).
+Security reports go through [SECURITY.md](SECURITY.md), not public issues.
+
+## Deployments
+
+Testnet contract ids and explorer links are recorded in [docs/deployments.md](docs/deployments.md).
+
+## Contributing
+
+We welcome contributions of all sizes. Start with [CONTRIBUTING.md](CONTRIBUTING.md) and the
+[Code of Conduct](CODE_OF_CONDUCT.md). Look for issues labelled **`status: good-first-issue`** and
+**`status: help-wanted`** (see [`.github/labels.yml`](.github/labels.yml)).
+
+Maintainers can create the planned Wave backlog in one run with
+`./scripts/create-issues.sh` and configure branch protection with
+`./scripts/setup-branch-protection.sh`.
+
+Good places to start:
+
+- Add an integration test that exercises a full stream lifecycle on a local node.
+- Implement the `splits` dashboard page.
+- Add multi-token stream support to the SDK.
 
 ---
 
-## 🤝 Contributing
+## Roadmap
 
-Contributions of any size are welcome! Please review the [CONTRIBUTING.md](CONTRIBUTING.md) guide and the [Code of Conduct](CODE_OF_CONDUCT.md) before submitting pull requests.
+See [ROADMAP.md](ROADMAP.md). Highlights:
+
+- **Now:** contracts + SDK + dashboard (this release).
+- **Next:** Testnet deployments, milestone escrow, event indexer.
+- **Later:** multi-token streams, Streams CLI, third-party audit.
 
 ---
 
-## 📄 License
+## Contributors
 
-Distributed under the MIT License. See [LICENSE](LICENSE) for more details.
+Thanks to everyone who has contributed to Stellar Streams.
+
+<a href="https://github.com/SorobanForge/stellar-streams/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=SorobanForge/stellar-streams" alt="Contributors" />
+</a>
+
+## License
+
+MIT — see [LICENSE](LICENSE).

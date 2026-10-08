@@ -1,6 +1,6 @@
 ---
 name: '📖 Documentation Improvement'
-about: Propose improvements, updates, or fixes to the stellar-starter-kit documentation
+about: Propose improvements, updates, or fixes to the Stellar Streams documentation
 title: 'docs: [Short description of documentation work]'
 labels: ['documentation']
 assignees: []

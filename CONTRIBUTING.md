@@ -1,6 +1,6 @@
-# Contributing to stellar-starter-kit
+# Contributing to Stellar Streams
 
-Thank you for your interest in contributing to the **stellar-starter-kit**! We welcome contributions from everyone.
+Thank you for your interest in contributing to **Stellar Streams**! We welcome contributions from everyone.
 
 This project is a monorepo containing multiple packages and applications, managed with `pnpm` and `Turborepo`.
 
