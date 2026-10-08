@@ -211,9 +211,9 @@ export default function Docs() {
     <div className="min-h-screen bg-[#06060c] text-slate-100 selection:bg-purple-500/30 selection:text-purple-200">
       {/* Background glow mesh */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="absolute left-[-10%] top-[-10%] h-[60%] w-[60%] animate-pulse-slow rounded-full bg-purple-900/5 blur-[150px]"></div>
+        <div className="animate-pulse-slow absolute top-[-10%] left-[-10%] h-[60%] w-[60%] rounded-full bg-purple-900/5 blur-[150px]"></div>
         <div
-          className="absolute bottom-[-10%] right-[-10%] h-[60%] w-[60%] animate-pulse-slow rounded-full bg-cyan-900/5 blur-[150px]"
+          className="animate-pulse-slow absolute right-[-10%] bottom-[-10%] h-[60%] w-[60%] rounded-full bg-cyan-900/5 blur-[150px]"
           style={{ animationDelay: '2s' }}
         ></div>
       </div>
@@ -226,7 +226,7 @@ export default function Docs() {
           <aside className="flex flex-col gap-2 lg:col-span-3">
             <div className="mb-6 flex items-center gap-2 pl-4">
               <Logo size={16} className="text-purple-400" />
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+              <span className="text-xs font-bold tracking-wider text-slate-500 uppercase">
                 Developer Docs
               </span>
             </div>
