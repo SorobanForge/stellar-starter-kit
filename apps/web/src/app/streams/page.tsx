@@ -172,7 +172,7 @@ export default function StreamsDashboard() {
   return (
     <div className="min-h-screen bg-[#06060c] text-slate-100 selection:bg-purple-500/30 selection:text-purple-200">
       <Header />
-      <main className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-12">
+      <main className="relative z-10 mx-auto max-w-6xl px-6 pt-12 pb-24">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
@@ -180,7 +180,7 @@ export default function StreamsDashboard() {
           <ArrowLeft className="h-4 w-4" /> Back to overview
         </Link>
 
-        <div className="mb-10 mt-6">
+        <div className="mt-6 mb-10">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-3 py-1 text-xs font-semibold tracking-wide text-cyan-300">
             <Droplets className="h-3.5 w-3.5" /> Stellar Streams
           </span>
@@ -276,12 +276,12 @@ export default function StreamsDashboard() {
             onSubmit={handleCreate}
             className="space-y-6 rounded-2xl border border-slate-900 bg-slate-950/40 p-6 lg:col-span-5"
           >
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-400">
+            <h2 className="text-sm font-semibold tracking-wider text-slate-400 uppercase">
               New stream
             </h2>
 
             <label className="block">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
                 Recipient
               </span>
               <input
@@ -295,7 +295,7 @@ export default function StreamsDashboard() {
 
             <div className="grid grid-cols-2 gap-4">
               <label className="block">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
                   Amount (XLM)
                 </span>
                 <input
@@ -309,7 +309,7 @@ export default function StreamsDashboard() {
                 />
               </label>
               <label className="block">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
                   Duration (days)
                 </span>
                 <input
@@ -324,7 +324,7 @@ export default function StreamsDashboard() {
             </div>
 
             <label className="block">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
                 Cliff (days, 0 = none)
               </span>
               <input
@@ -349,7 +349,7 @@ export default function StreamsDashboard() {
           {/* Inspect */}
           <div className="space-y-6 lg:col-span-7">
             <div className="rounded-2xl border border-slate-900 bg-slate-950/40 p-6">
-              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">
+              <h2 className="mb-4 text-sm font-semibold tracking-wider text-slate-400 uppercase">
                 Inspect a stream
               </h2>
               <div className="flex gap-3">
@@ -407,23 +407,23 @@ export default function StreamsDashboard() {
 
                   <dl className="grid grid-cols-2 gap-4 border-t border-slate-900 pt-4">
                     <div>
-                      <dt className="text-[10px] uppercase text-slate-500">Recipient</dt>
+                      <dt className="text-[10px] text-slate-500 uppercase">Recipient</dt>
                       <dd className="mt-1 text-slate-300">{formatAddress(stream.recipient, 6)}</dd>
                     </div>
                     <div>
-                      <dt className="text-[10px] uppercase text-slate-500">Total</dt>
+                      <dt className="text-[10px] text-slate-500 uppercase">Total</dt>
                       <dd className="mt-1 text-slate-300">
                         {formatStroopsToXlm(BigInt(stream.totalAmount))} XLM
                       </dd>
                     </div>
                     <div>
-                      <dt className="text-[10px] uppercase text-slate-500">Withdrawn</dt>
+                      <dt className="text-[10px] text-slate-500 uppercase">Withdrawn</dt>
                       <dd className="mt-1 text-slate-300">
                         {formatStroopsToXlm(BigInt(stream.withdrawn))} XLM
                       </dd>
                     </div>
                     <div>
-                      <dt className="text-[10px] uppercase text-slate-500">Claimable</dt>
+                      <dt className="text-[10px] text-slate-500 uppercase">Claimable</dt>
                       <dd className="mt-1 font-bold text-cyan-300">
                         {formatStroopsToXlm(claimable)} XLM
                       </dd>
