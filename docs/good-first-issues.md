@@ -9,7 +9,7 @@ Complexity maps to Drips Wave points: **Trivial** (100), **Medium** (150), **Hig
 
 ## 1. Add a `/splits` dashboard page
 
-- **Labels:** `type: feature`, `area: web`, `good first issue`, `difficulty: medium`
+- **Labels:** `type: feature`, `area: web`, `status: good-first-issue`, `difficulty: medium`
 - **Complexity:** Medium
 - **Context:** The dashboard has `/streams`; the `splits` contract has no UI.
 - **Task:** Add `apps/web/src/app/splits/page.tsx` that lets a user create a split (recipients +
@@ -19,7 +19,7 @@ Complexity maps to Drips Wave points: **Trivial** (100), **Medium** (150), **Hig
 
 ## 2. `SplitsClient` in the SDK
 
-- **Labels:** `type: feature`, `area: sdk`, `good first issue`, `difficulty: medium`
+- **Labels:** `type: feature`, `area: sdk`, `status: good-first-issue`, `difficulty: medium`
 - **Complexity:** Medium
 - **Context:** Only `StreamsClient` exists.
 - **Task:** Add a typed `SplitsClient` covering `create_split`, `distribute`, `get_split`,
@@ -28,7 +28,7 @@ Complexity maps to Drips Wave points: **Trivial** (100), **Medium** (150), **Hig
 
 ## 3. Poll stream state in the dashboard
 
-- **Labels:** `type: feature`, `area: web`, `good first issue`, `difficulty: easy`
+- **Labels:** `type: feature`, `area: web`, `status: good-first-issue`, `difficulty: easy`
 - **Complexity:** Trivial
 - **Context:** `useStream` supports a `pollMs` argument that the UI never passes.
 - **Task:** Pass a sensible interval when a stream is open and `streaming`, and stop polling when it
@@ -45,7 +45,7 @@ Complexity maps to Drips Wave points: **Trivial** (100), **Medium** (150), **Hig
 
 ## 5. Contract edge-case tests
 
-- **Labels:** `type: test`, `area: contracts`, `good first issue`, `difficulty: easy`
+- **Labels:** `type: test`, `area: contracts`, `status: good-first-issue`, `difficulty: easy`
 - **Complexity:** Trivial
 - **Context:** `stream` has 13 tests; boundary coverage can improve.
 - **Task:** Add tests for: fee at the 10% cap, a stream whose `cliff == end`, and withdrawing the
@@ -54,7 +54,7 @@ Complexity maps to Drips Wave points: **Trivial** (100), **Medium** (150), **Hig
 
 ## 6. Document deployed contracts
 
-- **Labels:** `type: documentation`, `good first issue`, `difficulty: easy`
+- **Labels:** `type: documentation`, `status: good-first-issue`, `difficulty: easy`
 - **Complexity:** Trivial
 - **Task:** After a Testnet deploy, add a `docs/deployments.md` with contract ids and Stellar Expert
   links for `stream`, `splits`, and `escrow`.

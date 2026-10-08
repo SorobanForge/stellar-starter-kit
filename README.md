@@ -234,11 +234,33 @@ Copy `.env.example` to `.env.local` and set:
 
 ---
 
+## Maintainers
+
+| Maintainer                                       | Role            | Contact                                                                              |
+| :----------------------------------------------- | :-------------- | :----------------------------------------------------------------------------------- |
+| [@SorobanForge](https://github.com/SorobanForge) | Lead maintainer | [GitHub](https://github.com/SorobanForge) · Telegram: _add handle before submission_ |
+
+<!-- Replace the Telegram placeholder above with the project's community handle. Telegram is the
+     convention for Stellar Wave repos; a reachable contact is part of the approval checklist. -->
+
+## Community
+
+Questions, ideas, and show-and-tell live in [GitHub Discussions](https://github.com/SorobanForge/stellar-streams/discussions).
+Security reports go through [SECURITY.md](SECURITY.md), not public issues.
+
+## Deployments
+
+Testnet contract ids and explorer links are recorded in [docs/deployments.md](docs/deployments.md).
+
 ## Contributing
 
 We welcome contributions of all sizes. Start with [CONTRIBUTING.md](CONTRIBUTING.md) and the
-[Code of Conduct](CODE_OF_CONDUCT.md). Look for issues labelled **`good first issue`** and
-**`help wanted`**.
+[Code of Conduct](CODE_OF_CONDUCT.md). Look for issues labelled **`status: good-first-issue`** and
+**`status: help-wanted`** (see [`.github/labels.yml`](.github/labels.yml)).
+
+Maintainers can create the planned Wave backlog in one run with
+`./scripts/create-issues.sh` and configure branch protection with
+`./scripts/setup-branch-protection.sh`.
 
 Good places to start:
 
@@ -257,6 +279,14 @@ See [ROADMAP.md](ROADMAP.md). Highlights:
 - **Later:** multi-token streams, Streams CLI, third-party audit.
 
 ---
+
+## Contributors
+
+Thanks to everyone who has contributed to Stellar Streams.
+
+<a href="https://github.com/SorobanForge/stellar-streams/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=SorobanForge/stellar-streams" alt="Contributors" />
+</a>
 
 ## License
 
