@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import {
   isConnected as checkFreighterConnected,
-  getPublicKey as getFreighterPublicKey,
+  getAddress as getFreighterAddress,
   signTransaction as signFreighterTransaction,
   requestAccess as requestFreighterAccess,
 } from '@stellar/freighter-api';
@@ -75,14 +75,16 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     try {
       let publicKey = '';
       if (provider === 'freighter') {
-        const isFreighterConnected = await checkFreighterConnected();
-        if (!isFreighterConnected) {
+        const connection = await checkFreighterConnected();
+        if (!connection.isConnected) {
           throw new Error('Freighter wallet extension is not installed or enabled.');
         }
         try {
-          publicKey = await requestFreighterAccess();
-        } catch (e) {
-          publicKey = await getFreighterPublicKey();
+          const access = await requestFreighterAccess();
+          publicKey = access.address;
+        } catch {
+          const address = await getFreighterAddress();
+          publicKey = address.address;
         }
       } else if (provider === 'albedo') {
         const res = await albedo.publicKey({});
@@ -146,11 +148,11 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
 
       try {
         if (activeProvider === 'freighter') {
-          return await signFreighterTransaction(xdr, {
-            network: network,
+          const { signedTxXdr } = await signFreighterTransaction(xdr, {
             networkPassphrase: passphrase,
-            accountToSign: activeAddress,
+            address: activeAddress,
           });
+          return signedTxXdr;
         } else if (activeProvider === 'albedo') {
           const res = await albedo.tx({
             xdr,
