@@ -83,3 +83,40 @@ with open('$DeploymentsFile', 'w') as f:
 done
 
 echo "Deployments saved to: $DeploymentsFile"
+
+# 4. Initialize the stream contract (admin, treasury, protocol fee). One-shot.
+read_deployment() {
+    if command -v jq &>/dev/null; then
+        jq -r --arg k "$1" '.[$k] // empty' "$DeploymentsFile"
+    else
+        python3 -c "import json; print(json.load(open('$DeploymentsFile')).get('$1',''))"
+    fi
+}
+
+STREAM_ID=$(read_deployment stream)
+SPLITS_ID=$(read_deployment splits)
+ESCROW_ID=$(read_deployment escrow)
+ADMIN_ADDRESS=$($STELLAR_CLI keys address "$AccountName")
+FEE_BPS="${STREAM_FEE_BPS:-0}"
+
+if [ -n "$STREAM_ID" ]; then
+    echo "Initializing stream contract (admin=$ADMIN_ADDRESS, treasury=$ADMIN_ADDRESS, fee_bps=$FEE_BPS)..."
+    $STELLAR_CLI contract invoke --id "$STREAM_ID" --source-account "$AccountName" --network testnet -- \
+        initialize --admin "$ADMIN_ADDRESS" --treasury "$ADMIN_ADDRESS" --fee_bps "$FEE_BPS" \
+        || echo "Warning: initialize returned non-zero (contract likely already initialized)."
+fi
+
+echo ""
+echo "=================================================================="
+echo " Deployment complete - Stellar Testnet"
+echo "=================================================================="
+echo "  stream: $STREAM_ID"
+echo "  splits: $SPLITS_ID"
+echo "  escrow: $ESCROW_ID"
+echo ""
+echo " Copy into apps/web/.env.local:"
+echo ""
+echo "NEXT_PUBLIC_STREAM_CONTRACT_ID=$STREAM_ID"
+echo "NEXT_PUBLIC_SPLITS_CONTRACT_ID=$SPLITS_ID"
+echo "NEXT_PUBLIC_ESCROW_CONTRACT_ID=$ESCROW_ID"
+echo "=================================================================="
