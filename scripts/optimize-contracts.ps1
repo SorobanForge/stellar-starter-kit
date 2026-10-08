@@ -9,14 +9,14 @@ if (-not (Test-Path $StellarCli)) {
 
 Write-Host "Optimizing WASM contracts using Stellar CLI..."
 
-$ReleaseDir = Join-Path $WorkspaceRoot "contracts\target\wasm32-unknown-unknown\release"
+$ReleaseDir = Join-Path $WorkspaceRoot "contracts\target\wasm32v1-none\release"
 if (-not (Test-Path $ReleaseDir)) {
     Write-Error "Release directory not found. Please build contracts first."
     exit 1
 }
 
 # Add more contracts to this array as we implement them
-$Contracts = @("counter")
+$Contracts = @("stream", "splits", "escrow")
 
 foreach ($Contract in $Contracts) {
     $WasmName = "$Contract.wasm"
