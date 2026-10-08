@@ -1,8 +1,8 @@
 {
-  "name": "stellar-starter-kit-monorepo",
+  "name": "stellar-streams-monorepo",
   "version": "0.1.0",
   "private": true,
-  "description": "The fastest way to build modern Stellar and Soroban applications.",
+  "description": "Payment streaming, vesting, and splits protocol for Stellar and Soroban.",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=8.0.0"
@@ -13,6 +13,11 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
+    "test:contracts": "cargo test --manifest-path contracts/Cargo.toml",
+    "lint:contracts": "cargo clippy --manifest-path contracts/Cargo.toml --all-targets -- -D warnings",
+    "fmt:contracts": "cargo fmt --manifest-path contracts/Cargo.toml --all -- --check",
+    "node:local": "docker compose up -d",
+    "node:stop": "docker compose down",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "prepare": "husky",
@@ -22,10 +27,14 @@
     "download:cli": "node scripts/run.js download-stellar-cli",
     "build:contracts": "node scripts/run.js build-contracts",
     "optimize": "node scripts/run.js optimize-contracts",
+    "create:issues": "./scripts/create-issues.sh",
+    "repo:protect": "./scripts/setup-branch-protection.sh",
+    "repo:topics": "./scripts/set-topics.sh",
     "deploy:testnet": "node scripts/run.js deploy-contracts",
-    "deploy:counter": "node scripts/run.js deploy-contracts",
+    "deploy:stream": "node scripts/run.js deploy-contracts",
+    "deploy:splits": "node scripts/run.js deploy-contracts",
     "deploy:escrow": "node scripts/run.js deploy-contracts",
-    "invoke:counter": "node scripts/run.js invoke-counter",
+    "invoke:stream": "node scripts/run.js invoke-stream",
     "invoke:escrow": "node scripts/run.js invoke-escrow"
   },
   "devDependencies": {
@@ -45,7 +54,7 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "react": "^19.0.0",
     "@types/react": "^19.0.0",
-    "turbo": "^2.0.4",
+    "turbo": "^2.10.5",
     "typescript": "^5.5.2"
   },
   "packageManager": "pnpm@9.4.0",
