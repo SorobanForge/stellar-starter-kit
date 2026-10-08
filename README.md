@@ -238,7 +238,7 @@ Copy `.env.example` to `.env.local` and set:
 
 | Maintainer                                       | Role            | Contact                                                                              |
 | :----------------------------------------------- | :-------------- | :----------------------------------------------------------------------------------- |
-| [@SorobanForge](https://github.com/SorobanForge) | Lead maintainer | [GitHub](https://github.com/SorobanForge) · Telegram: _add handle before submission_ |
+| [@SorobanForge](https://github.com/SorobanForge) | Lead maintainer | [GitHub](https://github.com/SorobanForge) · |
 
 <!-- Replace the Telegram placeholder above with the project's community handle. Telegram is the
      convention for Stellar Wave repos; a reachable contact is part of the approval checklist. -->
