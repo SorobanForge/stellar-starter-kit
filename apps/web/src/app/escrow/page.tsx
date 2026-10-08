@@ -315,13 +315,13 @@ export default function EscrowDemo() {
     <div className="min-h-screen bg-[#06060c] text-slate-100 selection:bg-purple-500/30 selection:text-purple-200">
       {/* Background decoration */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="absolute left-[-15%] top-[-15%] h-[60%] w-[60%] rounded-full bg-purple-900/10 blur-[150px]"></div>
-        <div className="absolute bottom-[-15%] right-[-15%] h-[60%] w-[60%] rounded-full bg-cyan-900/10 blur-[150px]"></div>
+        <div className="absolute top-[-15%] left-[-15%] h-[60%] w-[60%] rounded-full bg-purple-900/10 blur-[150px]"></div>
+        <div className="absolute right-[-15%] bottom-[-15%] h-[60%] w-[60%] rounded-full bg-cyan-900/10 blur-[150px]"></div>
       </div>
 
       <Header />
 
-      <main className="relative z-10 mx-auto max-w-6xl px-6 pb-24 pt-12">
+      <main className="relative z-10 mx-auto max-w-6xl px-6 pt-12 pb-24">
         <div className="mb-8">
           <Link
             href="/"
@@ -354,7 +354,7 @@ export default function EscrowDemo() {
               {/* Wallet connection panel */}
               <div className="mb-8 flex items-center justify-between border-b border-slate-900 pb-6">
                 <div>
-                  <h2 className="text-slate-350 text-xs font-semibold uppercase tracking-wider">
+                  <h2 className="text-slate-350 text-xs font-semibold tracking-wider uppercase">
                     Connection Info
                   </h2>
                   <div className="mt-1 flex items-center gap-2 text-xs">
@@ -464,7 +464,7 @@ export default function EscrowDemo() {
                   <form onSubmit={handleCreateEscrow} className="space-y-6">
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        <label className="block text-xs font-semibold tracking-wider text-slate-400 uppercase">
                           Escrow Contract ID (u64 / numeric)
                         </label>
                         <input
@@ -485,7 +485,7 @@ export default function EscrowDemo() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        <label className="block text-xs font-semibold tracking-wider text-slate-400 uppercase">
                           Token Contract Address
                         </label>
                         <input
@@ -498,7 +498,7 @@ export default function EscrowDemo() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        <label className="block text-xs font-semibold tracking-wider text-slate-400 uppercase">
                           Payee/Beneficiary Address
                         </label>
                         <input
@@ -512,7 +512,7 @@ export default function EscrowDemo() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        <label className="block text-xs font-semibold tracking-wider text-slate-400 uppercase">
                           Arbiter Address
                         </label>
                         <input
@@ -526,7 +526,7 @@ export default function EscrowDemo() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        <label className="block text-xs font-semibold tracking-wider text-slate-400 uppercase">
                           Deposit Amount (XLM)
                         </label>
                         <div className="relative mt-2">
@@ -535,7 +535,7 @@ export default function EscrowDemo() {
                             step="any"
                             value={createAmount}
                             onChange={(e) => setCreateAmount(e.target.value)}
-                            className="w-full rounded-xl border border-slate-900 bg-slate-950 py-2.5 pl-4 pr-12 font-mono text-sm text-slate-200 focus:border-purple-500 focus:outline-none"
+                            className="w-full rounded-xl border border-slate-900 bg-slate-950 py-2.5 pr-12 pl-4 font-mono text-sm text-slate-200 focus:border-purple-500 focus:outline-none"
                             required
                           />
                           <div className="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -545,7 +545,7 @@ export default function EscrowDemo() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        <label className="block text-xs font-semibold tracking-wider text-slate-400 uppercase">
                           Deadline (Duration from now)
                         </label>
                         <select
@@ -583,7 +583,7 @@ export default function EscrowDemo() {
                   <div className="space-y-6">
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        <label className="block text-xs font-semibold tracking-wider text-slate-400 uppercase">
                           Target Escrow ID
                         </label>
                         <input
@@ -596,7 +596,7 @@ export default function EscrowDemo() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        <label className="block text-xs font-semibold tracking-wider text-slate-400 uppercase">
                           Signing Caller Address
                         </label>
                         <input
@@ -618,7 +618,7 @@ export default function EscrowDemo() {
                         className="flex flex-col items-center justify-center gap-2 rounded-xl border border-slate-800/80 bg-slate-950/20 py-4 font-semibold text-slate-200 shadow-inner transition-all hover:bg-slate-900/50 disabled:pointer-events-none disabled:opacity-40"
                       >
                         <Coins className="h-5 w-5 text-yellow-400" />
-                        <span className="text-xs uppercase tracking-wider">Fund Escrow</span>
+                        <span className="text-xs tracking-wider uppercase">Fund Escrow</span>
                       </button>
 
                       {/* Release */}
@@ -628,7 +628,7 @@ export default function EscrowDemo() {
                         className="flex flex-col items-center justify-center gap-2 rounded-xl border border-slate-800/80 bg-slate-950/20 py-4 font-semibold text-slate-200 shadow-inner transition-all hover:bg-slate-900/50 disabled:pointer-events-none disabled:opacity-40"
                       >
                         <Play className="h-5 w-5 text-emerald-400" />
-                        <span className="text-xs uppercase tracking-wider">Release Payee</span>
+                        <span className="text-xs tracking-wider uppercase">Release Payee</span>
                       </button>
 
                       {/* Refund */}
@@ -638,7 +638,7 @@ export default function EscrowDemo() {
                         className="flex flex-col items-center justify-center gap-2 rounded-xl border border-slate-800/80 bg-slate-950/20 py-4 font-semibold text-slate-200 shadow-inner transition-all hover:bg-slate-900/50 disabled:pointer-events-none disabled:opacity-40"
                       >
                         <Undo2 className="h-5 w-5 text-cyan-400" />
-                        <span className="text-xs uppercase tracking-wider">Refund Payer</span>
+                        <span className="text-xs tracking-wider uppercase">Refund Payer</span>
                       </button>
 
                       {/* Cancel */}
@@ -648,7 +648,7 @@ export default function EscrowDemo() {
                         className="flex flex-col items-center justify-center gap-2 rounded-xl border border-slate-800/80 bg-slate-950/20 py-4 font-semibold text-slate-200 shadow-inner transition-all hover:bg-slate-900/50 disabled:pointer-events-none disabled:opacity-40"
                       >
                         <Ban className="h-5 w-5 text-rose-400" />
-                        <span className="text-xs uppercase tracking-wider">Cancel (Payer)</span>
+                        <span className="text-xs tracking-wider uppercase">Cancel (Payer)</span>
                       </button>
                     </div>
                   </div>
@@ -709,25 +709,25 @@ export default function EscrowDemo() {
 
                           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                             <div>
-                              <div className="text-[10px] uppercase text-slate-500">Payer</div>
+                              <div className="text-[10px] text-slate-500 uppercase">Payer</div>
                               <div className="text-slate-350 mt-1 break-all">
                                 {lookupResult.payer}
                               </div>
                             </div>
                             <div>
-                              <div className="text-[10px] uppercase text-slate-500">Payee</div>
+                              <div className="text-[10px] text-slate-500 uppercase">Payee</div>
                               <div className="text-slate-350 mt-1 break-all">
                                 {lookupResult.payee}
                               </div>
                             </div>
                             <div>
-                              <div className="text-[10px] uppercase text-slate-500">Arbiter</div>
+                              <div className="text-[10px] text-slate-500 uppercase">Arbiter</div>
                               <div className="text-slate-350 mt-1 break-all">
                                 {lookupResult.arbiter}
                               </div>
                             </div>
                             <div>
-                              <div className="text-[10px] uppercase text-slate-500">
+                              <div className="text-[10px] text-slate-500 uppercase">
                                 Token Contract
                               </div>
                               <div className="text-slate-350 mt-1 break-all">
@@ -735,13 +735,13 @@ export default function EscrowDemo() {
                               </div>
                             </div>
                             <div>
-                              <div className="text-[10px] uppercase text-slate-500">Amount</div>
+                              <div className="text-[10px] text-slate-500 uppercase">Amount</div>
                               <div className="mt-1 text-sm font-bold text-white">
                                 {lookupResult.amount} XLM
                               </div>
                             </div>
                             <div>
-                              <div className="text-[10px] uppercase text-slate-500">
+                              <div className="text-[10px] text-slate-500 uppercase">
                                 Deadline (Refund unlock)
                               </div>
                               <div className="text-slate-350 mt-1">{lookupResult.deadline}</div>
@@ -778,7 +778,7 @@ export default function EscrowDemo() {
                     <AlertCircle className="h-5 w-5 shrink-0 text-rose-400" />
                     <div>
                       <h4 className="font-semibold text-rose-200">Execution Error</h4>
-                      <p className="mt-1 font-light leading-relaxed">{error}</p>
+                      <p className="mt-1 leading-relaxed font-light">{error}</p>
                     </div>
                   </motion.div>
                 )}
@@ -793,7 +793,7 @@ export default function EscrowDemo() {
                     <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
                     <div>
                       <h4 className="font-semibold text-emerald-200">Success</h4>
-                      <p className="mt-1 font-light leading-relaxed">{successMessage}</p>
+                      <p className="mt-1 leading-relaxed font-light">{successMessage}</p>
                     </div>
                   </motion.div>
                 )}
@@ -810,17 +810,17 @@ export default function EscrowDemo() {
               </h3>
               <div className="mt-4 space-y-3 font-mono text-xs">
                 <div>
-                  <div className="text-[10px] uppercase text-slate-500">Contract ID</div>
-                  <div className="mt-1 select-all break-all text-slate-300 transition-colors hover:text-cyan-400">
+                  <div className="text-[10px] text-slate-500 uppercase">Contract ID</div>
+                  <div className="mt-1 break-all text-slate-300 transition-colors select-all hover:text-cyan-400">
                     {contractId}
                   </div>
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase text-slate-500">Network</div>
+                  <div className="text-[10px] text-slate-500 uppercase">Network</div>
                   <div className="mt-1 text-slate-300">Stellar Testnet</div>
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase text-slate-500">Explorer</div>
+                  <div className="text-[10px] text-slate-500 uppercase">Explorer</div>
                   <div className="mt-1">
                     <a
                       href={`https://stellar.expert/explorer/testnet/contract/${contractId}`}
@@ -839,7 +839,7 @@ export default function EscrowDemo() {
             <div className="rounded-2xl border border-slate-900 bg-slate-950/40 p-6 backdrop-blur-md">
               <h3 className="mb-4 text-sm font-semibold text-white">Event Log</h3>
 
-              <div className="scrollbar-thin max-h-[350px] space-y-3 overflow-y-auto pr-2">
+              <div className="max-h-[350px] scrollbar-thin space-y-3 overflow-y-auto pr-2">
                 {logs.length === 0 ? (
                   <div className="text-slate-650 py-8 text-center font-mono text-xs">
                     No logs recorded.
@@ -851,7 +851,7 @@ export default function EscrowDemo() {
                       className="rounded-lg border border-slate-900 bg-slate-950/60 p-3.5 font-mono text-xs"
                     >
                       <div className="mb-1.5 flex items-center justify-between">
-                        <span className="text-slate-450 font-semibold uppercase tracking-wider">
+                        <span className="text-slate-450 font-semibold tracking-wider uppercase">
                           {log.type}
                         </span>
                         <span className="text-[10px] text-slate-600">

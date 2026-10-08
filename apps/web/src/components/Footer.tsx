@@ -21,7 +21,7 @@ export default function Footer() {
               </div>
               <span className="font-extrabold tracking-wider text-white">Stellar Streams</span>
             </div>
-            <p className="max-w-sm text-sm font-light leading-relaxed text-slate-400">
+            <p className="max-w-sm text-sm leading-relaxed font-light text-slate-400">
               Open-source protocol for continuous payment streams, vesting schedules, and payment
               splits on Stellar and Soroban.
             </p>
@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h5 className="mb-4 text-xs font-bold uppercase tracking-wide text-slate-500">
+            <h5 className="mb-4 text-xs font-bold tracking-wide text-slate-500 uppercase">
               Resources
             </h5>
             <ul className="space-y-2 text-sm text-slate-400">
@@ -77,7 +77,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h5 className="mb-4 text-xs font-bold uppercase tracking-wide text-slate-500">
+            <h5 className="mb-4 text-xs font-bold tracking-wide text-slate-500 uppercase">
               Developers
             </h5>
             <ul className="space-y-2 text-sm text-slate-400">
