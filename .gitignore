@@ -12,6 +12,7 @@ out/
 # Production builds
 dist
 build
+*.tsbuildinfo
 
 # Environment files
 .env

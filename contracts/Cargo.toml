@@ -2,12 +2,11 @@
 resolver = "2"
 
 members = [
-    "counter",
     "escrow",
+    "stream",
+    "splits",
 ]
 
 [workspace.dependencies]
 soroban-sdk = "27.0.0"
 
-[patch.crates-io]
-ed25519-dalek = { path = "patches/ed25519-dalek" }

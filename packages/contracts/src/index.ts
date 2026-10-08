@@ -10,5 +10,4 @@ export const SOROBAN_NETWORKS = {
   },
 } as const;
 
-export * as CounterClient from './generated/counter/src';
 export * as EscrowClient from './generated/escrow/src';
