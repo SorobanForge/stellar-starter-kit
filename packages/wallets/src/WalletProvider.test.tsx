@@ -8,7 +8,8 @@ import albedo from '@albedo-link/intent';
 // Mock Freighter API
 vi.mock('@stellar/freighter-api', () => ({
   isConnected: vi.fn(),
-  getPublicKey: vi.fn(),
+  getAddress: vi.fn(),
+  requestAccess: vi.fn(),
   signTransaction: vi.fn(),
 }));
 
@@ -87,8 +88,8 @@ describe('WalletProvider', () => {
   });
 
   it('should connect to Freighter successfully', async () => {
-    vi.mocked(freighter.isConnected).mockResolvedValue(true);
-    vi.mocked(freighter.getPublicKey).mockResolvedValue('GB_FREIGHTER');
+    vi.mocked(freighter.isConnected).mockResolvedValue({ isConnected: true });
+    vi.mocked(freighter.requestAccess).mockResolvedValue({ address: 'GB_FREIGHTER' });
 
     render(
       <WalletProvider>
@@ -193,9 +194,12 @@ describe('WalletProvider', () => {
   });
 
   it('should delegate signTransaction to active wallet provider', async () => {
-    vi.mocked(freighter.isConnected).mockResolvedValue(true);
-    vi.mocked(freighter.getPublicKey).mockResolvedValue('GB_FREIGHTER');
-    vi.mocked(freighter.signTransaction).mockResolvedValue('signed-freighter-xdr');
+    vi.mocked(freighter.isConnected).mockResolvedValue({ isConnected: true });
+    vi.mocked(freighter.requestAccess).mockResolvedValue({ address: 'GB_FREIGHTER' });
+    vi.mocked(freighter.signTransaction).mockResolvedValue({
+      signedTxXdr: 'signed-freighter-xdr',
+      signerAddress: 'GB_FREIGHTER',
+    });
 
     render(
       <WalletProvider>
@@ -212,9 +216,8 @@ describe('WalletProvider', () => {
     });
 
     expect(freighter.signTransaction).toHaveBeenCalledWith('mock-xdr', {
-      network: 'TESTNET',
       networkPassphrase: 'Test SDF Network ; September 2015',
-      accountToSign: 'GB_FREIGHTER',
+      address: 'GB_FREIGHTER',
     });
   });
 });

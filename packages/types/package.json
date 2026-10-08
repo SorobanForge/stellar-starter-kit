@@ -2,7 +2,7 @@
   "name": "@stellar-starter-kit/types",
   "version": "0.1.0",
   "private": true,
-  "main": "",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
@@ -12,7 +12,7 @@
   "devDependencies": {
     "@stellar-starter-kit/tsconfig": "workspace:*",
     "@stellar-starter-kit/eslint-config": "workspace:*",
-    "typescript": "^5.5.2"
+    "typescript": "^6.0.3"
   }
 }
 

@@ -13,7 +13,7 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.6.0",
-    "lucide-react": "^0.395.0",
+    "lucide-react": "^1.24.0",
     "framer-motion": "^12.42.2"
   },
   "peerDependencies": {
@@ -27,7 +27,7 @@
     "@types/react-dom": "^19.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "typescript": "^5.5.2",
+    "typescript": "^6.0.3",
     "vitest": "^4.1.10"
   }
 }

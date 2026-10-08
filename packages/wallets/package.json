@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@stellar/stellar-sdk": "^14.5.0",
-    "@stellar/freighter-api": "^2.0.0",
+    "@stellar/freighter-api": "^6.0.1",
     "@albedo-link/intent": "^0.11.1"
   },
   "peerDependencies": {
@@ -26,7 +26,7 @@
     "jsdom": "^29.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "typescript": "^5.5.2",
+    "typescript": "^6.0.3",
     "vitest": "^4.1.10"
   }
 }

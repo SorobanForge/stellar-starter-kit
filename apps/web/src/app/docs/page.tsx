@@ -16,14 +16,14 @@ const DOCS_SECTIONS = {
       <div>
         <h1 className="mb-6 text-3xl font-extrabold text-white">Introduction</h1>
         <p className="text-slate-350 mb-4 leading-relaxed">
-          Welcome to the <strong>Stellar Starter Kit</strong>! This project is the ultimate flagship
-          template for scaffolding modern, production-grade Stellar and Soroban decentralized
-          applications.
+          Welcome to <strong>Stellar Streams</strong> — an open-source protocol for continuous
+          payment streams, linear vesting with cliffs, and proportional payment splits on Stellar
+          and Soroban.
         </p>
         <p className="text-slate-350 mb-4 leading-relaxed">
-          Whether you are building simple payment channels or complex multi-signature DAO governors,
-          this monorepo layout provides the developer tools, workspace isolations, type check gates,
-          and CI/CD pipelines required to maintain long-term code quality.
+          The protocol is implemented as Soroban smart contracts written in Rust, with a typed
+          TypeScript SDK, shared vesting math, and an open dashboard for creating and managing
+          streams.
         </p>
         <div className="glass my-8 rounded-2xl border border-slate-900 p-6">
           <h3 className="mb-2 text-base font-bold text-white">Key Philosophy</h3>
@@ -60,7 +60,8 @@ const DOCS_SECTIONS = {
         <pre className="mb-6 overflow-x-auto rounded-xl border border-slate-900 bg-[#08080f] p-5 font-mono text-xs leading-relaxed text-slate-300">
           {`git clone https://github.com/SorobanForge/stellar-starter-kit.git
 cd stellar-starter-kit
-pnpm install`}
+pnpm install
+pnpm build`}
         </pre>
 
         <h3 className="mb-3 text-lg font-bold text-white">2. Run Local Horizon Node</h3>
@@ -210,9 +211,9 @@ export default function Docs() {
     <div className="min-h-screen bg-[#06060c] text-slate-100 selection:bg-purple-500/30 selection:text-purple-200">
       {/* Background glow mesh */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="animate-pulse-slow absolute left-[-10%] top-[-10%] h-[60%] w-[60%] rounded-full bg-purple-900/5 blur-[150px]"></div>
+        <div className="animate-pulse-slow absolute top-[-10%] left-[-10%] h-[60%] w-[60%] rounded-full bg-purple-900/5 blur-[150px]"></div>
         <div
-          className="animate-pulse-slow absolute bottom-[-10%] right-[-10%] h-[60%] w-[60%] rounded-full bg-cyan-900/5 blur-[150px]"
+          className="animate-pulse-slow absolute right-[-10%] bottom-[-10%] h-[60%] w-[60%] rounded-full bg-cyan-900/5 blur-[150px]"
           style={{ animationDelay: '2s' }}
         ></div>
       </div>
@@ -225,7 +226,7 @@ export default function Docs() {
           <aside className="flex flex-col gap-2 lg:col-span-3">
             <div className="mb-6 flex items-center gap-2 pl-4">
               <Logo size={16} className="text-purple-400" />
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+              <span className="text-xs font-bold tracking-wider text-slate-500 uppercase">
                 Developer Docs
               </span>
             </div>
