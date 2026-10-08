@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install Dependencies
@@ -53,7 +53,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install Dependencies
@@ -77,7 +77,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install Dependencies
@@ -85,6 +85,32 @@ jobs:
 
       - name: Run Tests
         run: pnpm run test
+
+  contracts:
+    name: Test Soroban Contracts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: contracts
+
+      - name: Check Formatting
+        run: cargo fmt --manifest-path contracts/Cargo.toml --all -- --check
+
+      - name: Run Clippy
+        run: cargo clippy --manifest-path contracts/Cargo.toml --all-targets -- -D warnings
+
+      - name: Run Contract Tests
+        run: cargo test --manifest-path contracts/Cargo.toml
 
   build:
     name: Verify Production Build
@@ -101,7 +127,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install Dependencies
