@@ -1,6 +1,6 @@
 ---
 name: '🚀 Feature Request'
-about: Suggest an idea or new feature for stellar-starter-kit
+about: Suggest an idea or new feature for Stellar Streams
 title: 'feat: [Short description of feature]'
 labels: ['enhancement', 'triage']
 assignees: []

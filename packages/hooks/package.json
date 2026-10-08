@@ -9,6 +9,10 @@
     "lint": "eslint src --ext .ts,.tsx",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "@stellar-starter-kit/sdk": "workspace:*",
+    "@stellar-starter-kit/types": "workspace:*"
+  },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0"
   },
