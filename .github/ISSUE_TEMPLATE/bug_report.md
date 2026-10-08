@@ -1,6 +1,6 @@
 ---
 name: '🐛 Bug Report'
-about: Report a bug or unexpected behavior in stellar-starter-kit
+about: Report a bug or unexpected behavior in Stellar Streams
 title: 'bug: [Short description of issue]'
 labels: ['bug', 'triage']
 assignees: []
